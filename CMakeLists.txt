@@ -288,7 +288,7 @@ if(${BUILD_RESOURCE_COMPILER})
 endif()
 
 if(${XAML_INSTALL})
-    install(
+     install(
         TARGETS ${_XAML_TARGETS}
         EXPORT xaml-targets
         ARCHIVE DESTINATION lib

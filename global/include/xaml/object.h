@@ -183,7 +183,14 @@ inline xaml_result XAML_CALL xaml_object_new(T** ptr, Args&&... args) noexcept
     *ptr = res;
     return XAML_S_OK;
 }
-
+template <typename D, typename T, typename... Args>
+inline xaml_result XAML_CALL xaml_object_new(T** ptr) noexcept
+{
+    D* res = new (std::nothrow) D{};
+    XAML_UNLIKELY if (!res) return XAML_E_OUTOFMEMORY;
+    *ptr = res;
+    return XAML_S_OK;
+}
 template <typename D, typename T, typename... Args>
 inline xaml_result XAML_CALL xaml_object_new_catch(T** ptr, Args&&... args) noexcept
 try
