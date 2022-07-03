@@ -275,7 +275,9 @@ namespace rapidxml
                     row++;
                     col -= line;
                     line = 0;
+                 
                 }
+                tmp++;
             }
             return make_tuple(row, col);
         }
