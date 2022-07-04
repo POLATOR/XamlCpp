@@ -1,5 +1,6 @@
 #include <QFont>
 #include <QPalette>
+#include <QMetaObject>
 #include <shared/application.hpp>
 
 xaml_result xaml_application_impl::init(int argc, char** argv) noexcept
@@ -10,9 +11,8 @@ xaml_result xaml_application_impl::init(int argc, char** argv) noexcept
 #ifdef XAML_UI_QT5
     QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 #endif
-    m_native_app.reset(new QApplication(m_argc, argv));
-    m_native_app->setFont(QApplication::font("QMenu"));
-    QObject::connect(m_native_app.get(), &QGuiApplication::lastWindowClosed, m_native_app.get(), &QCoreApplication::quit, Qt::QueuedConnection);
+    m_native_app = qApp;
+    QObject::connect(m_native_app, &QGuiApplication::lastWindowClosed, m_native_app, &QCoreApplication::quit, Qt::QueuedConnection);
     for (int i = 0; i < m_argc; i++)
     {
         xaml_ptr<xaml_string> arg;
@@ -22,13 +22,24 @@ xaml_result xaml_application_impl::init(int argc, char** argv) noexcept
     return XAML_S_OK;
 }
 
+xaml_result XAML_CALL xaml_application_impl::invoke_in_gui_thread(std::function<void()> function) noexcept
+{
+  try{
+      QMetaObject::invokeMethod(qApp, function);
+  }
+  catch (...) {
+      return -1;
+  }
+  return {};
+}
+
 xaml_result xaml_application_impl::run(int* pvalue) noexcept
 {
     xaml_ptr<xaml_event_args> args;
     XAML_RETURN_IF_FAILED(xaml_event_args_empty(&args));
     XAML_RETURN_IF_FAILED(m_activate->invoke(this, args));
     int result = m_native_app->exec();
-    m_native_app.reset();
+    m_native_app;
     *pvalue = m_quit_value != 0 ? (int)m_quit_value : result;
     return XAML_S_OK;
 }

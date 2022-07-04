@@ -23,7 +23,7 @@ protected:
     g_object_unique_ptr<GtkApplication> m_native_app{};
 #elif defined(XAML_UI_QT)
     int m_argc{};
-    std::unique_ptr<QApplication> m_native_app{};
+    QApplication* m_native_app{};
 #endif
 
     std::atomic<int> m_quit_value{ 0 };
@@ -44,7 +44,7 @@ public:
     {
         return m_main_wnd.query(ptr);
     }
-
+    xaml_result XAML_CALL invoke_in_gui_thread(std::function<void()> function) noexcept override;
     xaml_result XAML_CALL run(int*) noexcept override;
     xaml_result XAML_CALL quit(int) noexcept override;
     xaml_result XAML_CALL get_theme(xaml_application_theme*) noexcept override;

@@ -7,10 +7,10 @@ static xaml_test_window* wnd;
 
 static void destroy_all(void)
 {
-    wnd->vtbl->release(wnd);
+    wnd->release();
 }
 
-xaml_result XAML_CALL xaml_main(xaml_application* app)
+xaml_result XAML_CALL xaml_main(xaml_application* app) noexcept
 {
     (void)app;
     xaml_result hr;
@@ -19,7 +19,7 @@ xaml_result XAML_CALL xaml_main(xaml_application* app)
     // Register destroyer.
     XAML_GOTO_IF_POSIX_ERROR(atexit(destroy_all), destroy_and_exit);
     // Show the window.
-    hr = wnd->vtbl->show(wnd);
+    hr = wnd->show();
 exit:
     return hr;
 destroy_and_exit:

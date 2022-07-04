@@ -1,6 +1,6 @@
 project(XamlUITest C CXX)
 
-file(GLOB TEST_SOURCE "src/*.c*")
+file(GLOB TEST_SOURCE "src/*.cpp*")
 add_executable(ui_test ${TEST_SOURCE})
 if(WIN32)
     set_target_properties(ui_test PROPERTIES WIN32_EXECUTABLE ON)
