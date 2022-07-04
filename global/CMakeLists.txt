@@ -37,7 +37,8 @@ target_include_directories(xaml_global
 target_link_libraries(xaml_global PRIVATE stream_format nowide)
 
 if(${USE_FUNCTION2})
-    target_link_libraries(xaml_global PUBLIC function2)
+    find_package(function2 REQUIRED)
+    target_link_libraries(xaml_global PUBLIC function2::function2)
 endif()
 
 target_compile_definitions(xaml_global

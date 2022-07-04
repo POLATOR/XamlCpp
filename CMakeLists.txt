@@ -212,7 +212,6 @@ add_subdirectory(nowide)
 list(APPEND _XAML_TARGETS nowide)
 
 if(${USE_FUNCTION2})
-    add_subdirectory(function2)
     list(APPEND XAML_BUILD_DEFINITIONS "XAML_FUNCTION2")
     if(${SUPPORT_FUNCTION2})
         list(APPEND XAML_BUILD_DEFINITIONS "XAML_SUPPORT_FUNCTION2")
