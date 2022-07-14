@@ -33,8 +33,9 @@ target_include_directories(xaml_global
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>
 )
-
-target_link_libraries(xaml_global PRIVATE stream_format nowide)
+find_package(sf REQUIRED)
+find_package(nowide REQUIRED)
+target_link_libraries(xaml_global PRIVATE stream_format nowide::nowide)
 
 if(${USE_FUNCTION2})
     find_package(function2 REQUIRED)

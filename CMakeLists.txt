@@ -205,11 +205,6 @@ set(_XAML_TARGETS
 
 option(XAML_INSTALL "Install XamlCpp components" ON)
 
-add_subdirectory(StreamFormat)
-list(APPEND _XAML_TARGETS stream_format)
-
-add_subdirectory(nowide)
-list(APPEND _XAML_TARGETS nowide)
 
 if(${USE_FUNCTION2})
     list(APPEND XAML_BUILD_DEFINITIONS "XAML_FUNCTION2")

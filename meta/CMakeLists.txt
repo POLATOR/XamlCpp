@@ -5,7 +5,8 @@ file(GLOB META_SOURCES "src/*.cpp")
 
 add_library(xaml_meta ${META_SOURCES})
 
-target_link_libraries(xaml_meta PUBLIC xaml_global PRIVATE nowide)
+find_package(nowide REQUIRED)
+target_link_libraries(xaml_meta PUBLIC xaml_global PRIVATE nowide::nowide)
 
 if(UNIX)
     target_link_libraries(xaml_meta PUBLIC dl)

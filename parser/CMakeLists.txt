@@ -4,6 +4,7 @@ file(GLOB XAML_HEADERS "include/xaml/parser/*.h")
 file(GLOB XAML_SOURCES "src/*.cpp")
 
 add_library(xaml_parser ${XAML_SOURCES})
+find_package(sf REQUIRED)
 target_link_libraries(xaml_parser PUBLIC xaml_meta xaml_markup PRIVATE xaml_rapidxml xaml_helpers stream_format)
 
 target_include_directories(xaml_parser

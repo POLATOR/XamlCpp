@@ -94,8 +94,8 @@ XamlCpp uses a dialect of XAML, which may support XAML Standard in the future. X
 
 Here's an XAML example:
 ``` xml
-<window xmlns="https://github.com/Berrysoft/XamlCpp/"
-        xmlns:x="https://github.com/Berrysoft/XamlCpp/xaml/"
+<window xmlns="https://polator.ru/schemas/vpl-1/"
+        xmlns:x="https://polator.ru/schemas/vpl-1/"
         title="Test Window" location="200, 100" size="800, 600">
   <grid margin="10" columns="1*, 0.8*, 1*" rows="1*, auto, 1*">
     <label x:name="mylabel" grid.column="0" grid.row="1" margin="5, 0" text_halignment="right" valignment="center" text="{binding text,element=mybutton,mode=one_way}"/>
@@ -104,7 +104,7 @@ Here's an XAML example:
   </grid>
 </window>
 ```
-The `xmlns` should be `https://github.com/Berrysoft/XamlCpp/` to use default controls. The xml attributes decribes the properties, events and attach properties of a control.
+The `xmlns` should be `https://polator.ru/schemas/vpl-1/` to use default controls. The xml attributes decribes the properties, events and attach properties of a control.
 
 The XAML parser uses a modified version of [rapidxml_ns](https://github.com/svgpp/rapidxml_ns). It is modified to use features of C++ 17 and simplified to support UTF-8 only for convenience.
 

@@ -10,4 +10,6 @@ target_include_directories(xamld
     PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/src
 )
-target_link_libraries(xamld PUBLIC xaml_cmdline PRIVATE xaml_cmdline_helper stream_format nowide)
+find_package(sf REQUIRED)
+find_package(nowide REQUIRED)
+target_link_libraries(xamld PUBLIC xaml_cmdline PRIVATE xaml_cmdline_helper stream_format nowide::nowide)

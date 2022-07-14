@@ -222,7 +222,7 @@ xaml_result parser_impl::parse_markup(string_view value, xaml_markup_node** ptr)
     return node->query(ptr);
 }
 
-static constexpr string_view x_ns{ "https://github.com/Berrysoft/XamlCpp/xaml/" };
+static constexpr string_view x_ns{ "https://polator.ru/schemas/vpl-1/" };
 
 // Add string node to properties vector
 static xaml_result props_add_string_property(xaml_ptr<xaml_vector<xaml_attribute_property>> const& props, xaml_ptr<xaml_type_info> const& t, xaml_ptr<xaml_property_info> const& prop, string_view value) noexcept

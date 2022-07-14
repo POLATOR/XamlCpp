@@ -27,5 +27,6 @@ if(Git_FOUND)
 		target_compile_definitions(xaml_cmdline_helper PRIVATE "XAML_COMMIT_HASH=\"${GIT_HASH}\"")
 	endif()
 endif()
-
-target_link_libraries(xaml_cmdline_helper PUBLIC xaml_cmdline PRIVATE stream_format nowide)
+find_package(sf REQUIRED)
+find_package(nowide REQUIRED)
+target_link_libraries(xaml_cmdline_helper PUBLIC xaml_cmdline PRIVATE stream_format nowide::nowide)

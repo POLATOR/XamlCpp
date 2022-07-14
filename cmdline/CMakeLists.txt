@@ -12,7 +12,7 @@ target_include_directories(xaml_cmdline
     PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/src
 )
-
+find_package(sf REQUIRED)
 target_link_libraries(xaml_cmdline PUBLIC xaml_meta PRIVATE xaml_helpers stream_format Boost::headers)
 
 if(${BUILD_SHARED_LIBS})
