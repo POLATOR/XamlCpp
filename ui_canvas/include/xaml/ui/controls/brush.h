@@ -1,9 +1,6 @@
 #ifndef XAML_UI_CANVAS_BRUSH_H
 #define XAML_UI_CANVAS_BRUSH_H
 
-#ifdef __cplusplus
-    #include <compare>
-#endif // __cplusplus
 
 #include <xaml/meta/meta_macros.h>
 #include <xaml/ui/drawing.h>
@@ -36,7 +33,12 @@ typedef struct xaml_gradient_stop
     double position;
 
 #ifdef __cplusplus
-    auto operator<=>(xaml_gradient_stop const&) const = default;
+    friend bool operator == (xaml_gradient_stop const&lhs, xaml_gradient_stop const& rhs) {
+        return (lhs.color == rhs.color) && (lhs.position == rhs.position);
+    }
+    friend bool operator != (xaml_gradient_stop const& lhs, xaml_gradient_stop const& rhs) {
+        return !(lhs == rhs);
+    }
 #endif // __cplusplus
 } xaml_gradient_stop;
 

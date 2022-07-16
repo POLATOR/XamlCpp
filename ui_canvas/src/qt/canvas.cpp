@@ -36,7 +36,7 @@ static xaml_result set_pen(QPainter* handle, xaml_pen* pen, xaml_rectangle const
 
 static int get_drawing_angle(double angle) noexcept
 {
-    return (int)round(-angle * 180 / numbers::pi * 16);
+    return (int)round(-angle * 180. / M_PI * 16.);
 }
 
 xaml_result xaml_drawing_context_impl::draw_arc(xaml_pen* pen, xaml_rectangle const& region, double start_angle, double end_angle) noexcept

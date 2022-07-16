@@ -2,7 +2,6 @@
 #define XAML_VERSION_HPP
 
 #ifdef __cplusplus
-    #include <compare>
     #include <cstddef>
     #include <ostream>
     #include <utility>
@@ -22,7 +21,16 @@ struct xaml_version
     XAML_STD int32_t patch;
 
 #ifdef __cplusplus
-    auto operator<=>(xaml_version const&) const = default;
+
+    friend bool operator== (xaml_version const& lhs, xaml_version const& rhs) {
+        return (lhs.major == rhs.major) && (lhs.minor == rhs.minor) && (lhs.patch == rhs.patch);
+    }
+    friend bool operator< (xaml_version const& lhs, xaml_version const& rhs) {
+        return (lhs.major < rhs.major) && (lhs.minor < rhs.minor) && (lhs.patch < rhs.patch);
+    }
+    friend bool operator> (xaml_version const& lhs, xaml_version const& rhs) {
+       return  rhs < lhs;
+    }
 #endif // __cplusplus
 };
 

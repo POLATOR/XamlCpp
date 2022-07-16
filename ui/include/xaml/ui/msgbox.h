@@ -2,7 +2,6 @@
 #define XAML_UI_MSGBOX_H
 
 #ifdef __cplusplus
-    #include <compare>
     #include <string_view>
 #endif // __cplusplus
 

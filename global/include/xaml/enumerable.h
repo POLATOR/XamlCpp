@@ -107,6 +107,10 @@ public:
     {
         return m_enumerator == nullptr && rhs.m_enumerator == nullptr;
     }
+    bool operator!=(__xaml_enumerator_iterator const& rhs) const
+    {
+        return !(*this== rhs);
+    }
 };
 
 template <typename T>

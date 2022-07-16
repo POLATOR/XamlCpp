@@ -197,7 +197,9 @@ xaml_result parser_impl::parse_markup(string_view value, xaml_markup_node** ptr)
         {
             xaml_ptr<xaml_node_base> node_value;
             // The value maybe another markup node
-            if (prop_value.starts_with('{') && prop_value.ends_with('}'))
+            bool starts_with = prop_value.front() == '{';
+            bool ends_with = prop_value.back() == '}';
+            if (starts_with && ends_with)
             {
                 xaml_ptr<xaml_markup_node> ex;
                 XAML_RETURN_IF_FAILED(parse_markup(prop_value.substr(1, prop_value.length() - 2), &ex));
@@ -377,7 +379,9 @@ xaml_result parser_impl::parse_members(xaml_ptr<xaml_node> const& mc, xml_node& 
                         {
                             string_view attr_value = attr.value();
                             // Support markup extensions
-                            if (attr_value.starts_with('{') && attr_value.ends_with('}'))
+                            bool starts_with = attr_value.front() == '{';
+                            bool ends_with = attr_value.back() == '}';
+                            if (starts_with && ends_with)
                             {
                                 xaml_ptr<xaml_markup_node> ex;
                                 XAML_RETURN_IF_FAILED(parse_markup(attr_value.substr(1, attr_value.length() - 2), &ex));

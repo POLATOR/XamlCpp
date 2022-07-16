@@ -3,7 +3,6 @@
 
 #ifdef __cplusplus
     #include <algorithm>
-    #include <compare>
     #include <cstdint>
     #include <string_view>
     #include <tuple>
@@ -69,7 +68,12 @@ struct xaml_size
     double height;
 
 #ifdef __cplusplus
-    auto operator<=>(xaml_size const&) const = default;
+    friend bool operator==(xaml_size const& lhs, xaml_size const& rhs) {
+        return (lhs.height == rhs.height) && (lhs.width == rhs.width);
+    }
+    friend bool operator!=(xaml_size const& lhs, xaml_size const& rhs) {
+        return !(lhs == rhs);
+    }
 #endif // __cplusplus
 };
 
@@ -95,7 +99,12 @@ struct xaml_point
     double y;
 
 #ifdef __cplusplus
-    auto operator<=>(xaml_point const&) const = default;
+    friend bool operator==(xaml_point const& lhs, xaml_point const& rhs) {
+        return (lhs.x == rhs.x) && (lhs.y == rhs.y);
+    }
+    friend bool operator!=(xaml_point const& lhs, xaml_point const& rhs) {
+        return !(lhs==rhs);
+    }
 #endif // __cplusplus
 };
 
@@ -159,7 +168,15 @@ struct xaml_rectangle
     double width, height;
 
 #ifdef __cplusplus
-    auto operator<=>(xaml_rectangle const&) const = default;
+    friend bool operator== (xaml_rectangle const& lhs, xaml_rectangle const& rhs) {
+        return (lhs.y == rhs.y) && (lhs.x == rhs.x) && (lhs.width == rhs.width) && (lhs.height == rhs.height);
+    }
+    friend bool operator<(xaml_rectangle const& lhs, xaml_rectangle const& rhs) {
+        return (lhs.y < rhs.y) && (lhs.x < rhs.x) && (lhs.width < rhs.width) && (lhs.height < rhs.height);
+    }
+    friend bool operator>(xaml_rectangle const& lhs, xaml_rectangle const& rhs) {
+        return rhs < lhs;
+    }
 #endif // __cplusplus
 };
 
@@ -186,7 +203,12 @@ struct xaml_margin
     double bottom;
 
 #ifdef __cplusplus
-    auto operator<=>(xaml_margin const&) const = default;
+    friend bool operator==(xaml_margin const&lhs, xaml_margin const&rhs) {
+        return (lhs.left == rhs.left) && (lhs.right == rhs.right) && (lhs.top == rhs.top) && (lhs.bottom == rhs.bottom);
+    }
+    friend bool operator!=(xaml_margin const& lhs, xaml_margin const& rhs) {
+        return !(lhs == rhs);
+    }
 #endif // __cplusplus
 };
 
@@ -268,7 +290,9 @@ struct xaml_color
     }
     static constexpr xaml_color from_argb(std::uint32_t v) noexcept { return { (std::uint8_t)((v >> 24) & 0xFF), (std::uint8_t)((v >> 16) & 0xFF), (std::uint8_t)((v >> 8) & 0xFF), (std::uint8_t)(v & 0xFF) }; }
 
-    auto operator<=>(xaml_color const&) const = default;
+    friend bool operator==(xaml_color const& lhs, xaml_color const& rhs) {
+        return (lhs.a == rhs.a) && (lhs.r == rhs.r) && (lhs.g == rhs.g) && (lhs.b == rhs.b);
+    }
 #endif // __cplusplus
 };
 

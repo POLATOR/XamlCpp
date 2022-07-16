@@ -1,9 +1,7 @@
 #ifndef XAML_UI_SCREEN_H
 #define XAML_UI_SCREEN_H
 
-#ifdef __cplusplus
-    #include <compare>
-#endif // __cplusplus
+
 
 #include <xaml/ui/drawing.h>
 #include <xaml/utility.h>
@@ -17,7 +15,12 @@ struct xaml_monitor
     xaml_rectangle client;
 
 #ifdef __cplusplus
-    auto operator<=>(xaml_monitor const&) const = default;
+    friend bool operator==(xaml_monitor const& lhs, xaml_monitor const& rhs) {
+        return (lhs.client == rhs.client) && (lhs.region == rhs.region);
+    }
+    friend bool operator!=(xaml_monitor const& lhs, xaml_monitor const& rhs) {
+        return !(lhs == rhs);
+    }
 #endif // __cplusplus
 };
 

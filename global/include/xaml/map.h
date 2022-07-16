@@ -341,7 +341,8 @@ struct __xaml_map_implement : xaml_implement<__xaml_map_implement<TKey, TValue>,
         auto it = m_map.find(key);
         *pb = it != m_map.end();
     #else
-        *pb = m_map.contains(key);
+        auto it = m_map.find(key);
+        *pb = it!= m_map.end();
     #endif // XAML_APPLE
         return XAML_S_OK;
     }

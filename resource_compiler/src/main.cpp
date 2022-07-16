@@ -42,7 +42,9 @@ void compile(ostream& stream, xaml_ptr<xaml_vector_view<xaml_string>> const& inp
     {
         path file = to_string_view(item);
 #ifndef XAML_APPLE
-        if (!rc_map.contains(file))
+
+        auto it = rc_map.find(file);
+        if (it == rc_map.end())
 #else
         auto it = rc_map.find(file);
         if (it == rc_map.end())
