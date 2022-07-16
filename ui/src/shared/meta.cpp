@@ -20,7 +20,7 @@ struct xaml_module_info_impl : xaml_implement<xaml_module_info_impl, xaml_module
     xaml_result XAML_CALL register_types(xaml_meta_context* ctx) noexcept override
     {
         xaml_ptr<xaml_string> xml_ns;
-        XAML_RETURN_IF_FAILED(xaml_string_new(U("https://github.com/Berrysoft/XamlCpp/"), &xml_ns));
+        XAML_RETURN_IF_FAILED(xaml_string_new(U("https://polator.ru/schemas/vpl-1/"), &xml_ns));
         xaml_ptr<xaml_string> ns;
         XAML_RETURN_IF_FAILED(xaml_string_new(U("xaml"), &ns));
         XAML_RETURN_IF_FAILED(ctx->add_namespace(xml_ns, ns));

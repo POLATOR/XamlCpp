@@ -149,7 +149,7 @@ xaml_result XAML_CALL xaml_test_window_new(xaml_meta_context* ctx, xaml_test_win
 xaml_result XAML_CALL xaml_test_window_register(xaml_meta_context* ctx) noexcept
 {
     xaml_ptr<xaml_string> xml_ns;
-    XAML_RETURN_IF_FAILED(xaml_string_new(U("https://github.com/Berrysoft/XamlCpp/parser/test/"), &xml_ns));
+    XAML_RETURN_IF_FAILED(xaml_string_new(U("https://polator.ru/schemas/vpl-1/parser/test/"), &xml_ns));
     xaml_ptr<xaml_string> ns;
     XAML_RETURN_IF_FAILED(xaml_string_new(U("xaml_test"), &ns));
     XAML_RETURN_IF_FAILED(ctx->add_namespace(xml_ns, ns));
