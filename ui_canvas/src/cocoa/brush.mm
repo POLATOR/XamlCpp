@@ -1,6 +1,5 @@
 #include <cmath>
 #include <cocoa/drawing_mask.hpp>
-#include <numbers>
 #include <shared/brush.hpp>
 #include <shared/point.hpp>
 #include <vector>

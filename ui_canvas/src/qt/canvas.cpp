@@ -1,7 +1,6 @@
 #include <QPainterPath>
 #include <QWidget>
 #include <cmath>
-#include <numbers>
 #include <qt/qstring.hpp>
 #include <shared/canvas.hpp>
 #include <xaml/ui/qt5/controls/brush.hpp>

@@ -95,7 +95,7 @@ XamlCpp uses a dialect of XAML, which may support XAML Standard in the future. X
 Here's an XAML example:
 ``` xml
 <window xmlns="https://polator.ru/schemas/vpl-1/"
-        xmlns:x="https://polator.ru/schemas/vpl-1/"
+        xmlns:x="https://polator.ru/schemas/vpl-1/xaml/"
         title="Test Window" location="200, 100" size="800, 600">
   <grid margin="10" columns="1*, 0.8*, 1*" rows="1*, auto, 1*">
     <label x:name="mylabel" grid.column="0" grid.row="1" margin="5, 0" text_halignment="right" valignment="center" text="{binding text,element=mybutton,mode=one_way}"/>

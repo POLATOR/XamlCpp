@@ -1,6 +1,5 @@
 #include <cairo.h>
 #include <cmath>
-#include <numbers>
 #include <shared/canvas.hpp>
 #include <xaml/ui/controls/canvas.h>
 #include <xaml/ui/gtk3/controls/brush.h>

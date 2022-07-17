@@ -171,11 +171,8 @@ struct xaml_rectangle
     friend bool operator== (xaml_rectangle const& lhs, xaml_rectangle const& rhs) {
         return (lhs.y == rhs.y) && (lhs.x == rhs.x) && (lhs.width == rhs.width) && (lhs.height == rhs.height);
     }
-    friend bool operator<(xaml_rectangle const& lhs, xaml_rectangle const& rhs) {
-        return (lhs.y < rhs.y) && (lhs.x < rhs.x) && (lhs.width < rhs.width) && (lhs.height < rhs.height);
-    }
-    friend bool operator>(xaml_rectangle const& lhs, xaml_rectangle const& rhs) {
-        return rhs < lhs;
+    friend bool operator!= (xaml_rectangle const& lhs, xaml_rectangle const& rhs) {
+        return !(lhs == rhs);
     }
 #endif // __cplusplus
 };

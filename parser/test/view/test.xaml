@@ -1,6 +1,6 @@
 <test:window xmlns="https://polator.ru/schemas/vpl-1/"
-             xmlns:x="https://polator.ru/schemas/vpl-1/"
-             xmlns:test="https://polator.ru/schemas/vpl-1/test/"
+             xmlns:x="https://polator.ru/schemas/vpl-1/xaml/"
+             xmlns:test="https://polator.ru/schemas/vpl-1/parser/test/"
              title="Test Window" location="200, 100" size="800, 600">
   <test:window.resources>
     <test:converter x:key="conv"/>

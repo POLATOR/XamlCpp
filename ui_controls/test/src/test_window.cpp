@@ -1,6 +1,5 @@
 #include <algorithm>
 #include <cmath>
-#include <numbers>
 #include <test_window.h>
 #include <xaml/ui/application.h>
 #include <xaml/ui/controls/button.h>

@@ -1,4 +1,3 @@
-#include <numbers>
 #include <shared/canvas.hpp>
 #include <win/d2d_conv.hpp>
 #include <windowsx.h>
