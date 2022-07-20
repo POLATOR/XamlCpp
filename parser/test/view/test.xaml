@@ -6,10 +6,11 @@
     <test:converter x:key="conv"/>
   </test:window.resources>
   <test:window.model>
-    <test:model x:name="model" text="&#x1f923;"/>
+    <test:model x:name="model" text="&#x1f923;" curveData="\u0008"/>
   </test:window.model>
   <grid margin="10" columns="1*, 1*, 0.8*" rows="auto, auto, 0.5*, 0.8*">
-    <label margin="10" text_halignment="right" valignment="center">Username:</label>
+    <diagram x:name="plot" xScaleLabel="X Label" yScaleLabel="Y Label" curveData="{binding curveData,element=model,mode=one_way}"/>
+    <!--<label margin="10" text_halignment="right" valignment="center">Username:</label>-->
     <entry grid.column="1" margin="0, 5" valignment="center">John</entry>
     <label grid.row="1" margin="10" text_halignment="right" valignment="center">Password:</label>
     <password_entry grid.column="1" grid.row="1" margin="0, 5" valignment="center">123456</password_entry>

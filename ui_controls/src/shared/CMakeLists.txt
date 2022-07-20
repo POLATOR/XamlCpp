@@ -41,7 +41,7 @@ elseif(${BUILD_GTK3})
 elseif(${BUILD_QT5})
     target_link_libraries(xaml_ui_controls PRIVATE Qt5::Widgets)
 elseif(${BUILD_QT6})
-    target_link_libraries(xaml_ui_controls PRIVATE Qt6::Widgets Qt6::OpenGLWidgets Qwt::Qwt)
+    target_link_libraries(xaml_ui_controls PRIVATE Qt6::Widgets Qwt::Qwt)
 endif()
 
 if(${XAML_INSTALL})
