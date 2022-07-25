@@ -4,6 +4,7 @@
 #include <rapidxml/xml_document.hpp>
 #include <sf/sformat.hpp>
 #include <sstream>
+#include <string_view>
 #include <xaml/internal/stream.hpp>
 #include <xaml/parser/parser.h>
 
@@ -482,6 +483,11 @@ xaml_result parser_impl::parse_members(xaml_ptr<xaml_node> const& mc, xml_node& 
                     XAML_RETURN_IF_FAILED(xaml_string_new(prop_name, &prop_name_str));
                     // If it is a property, add child node
                     xaml_ptr<xaml_property_info> prop;
+                    xaml_ptr<xaml_string> viewModel;
+                    XAML_RETURN_IF_FAILED(xaml_string_new("ViewModel", &viewModel));
+                    const char* prop_name_ptr;
+                    prop_name_str->get_data(&prop_name_ptr);
+                    bool isViewModel = std::string_view(prop_name_ptr) == "ViewModel";
                     if (XAML_SUCCEEDED(t->get_property(prop_name_str, &prop)))
                     {
                         bool can_write;
@@ -495,6 +501,14 @@ xaml_result parser_impl::parse_members(xaml_ptr<xaml_node> const& mc, xml_node& 
                             XAML_RETURN_IF_FAILED(xaml_attribute_property_new(type, prop, child, &prop_item));
                             XAML_RETURN_IF_FAILED(props->append(prop_item));
                         }
+                    }
+                    else if (isViewModel) {
+                        xml_node& cnode = c.nodes().front();
+                        xaml_ptr<xaml_node> child;
+                        XAML_RETURN_IF_FAILED(parse_impl(cnode, &child));
+                        xaml_ptr<xaml_attribute_property> prop_item;
+                        XAML_RETURN_IF_FAILED(xaml_attribute_property_new(type, prop, child, &prop_item));
+                        XAML_RETURN_IF_FAILED(props->append(prop_item));
                     }
                     else
                     {

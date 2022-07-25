@@ -1,7 +1,7 @@
 #include <xaml/meta/module.h>
 #include <xaml/ui/menu_bar.h>
 #include <xaml/ui/window.h>
-
+#include <xaml/ui/main_window.h>
 struct xaml_module_info_impl : xaml_implement<xaml_module_info_impl, xaml_module_info>
 {
     xaml_ptr<xaml_vector<xaml_string>> m_dependencies;
@@ -31,6 +31,7 @@ struct xaml_module_info_impl : xaml_implement<xaml_module_info_impl, xaml_module
         XAML_RETURN_IF_FAILED(xaml_menu_bar_register(ctx));
         XAML_RETURN_IF_FAILED(xaml_halignment_register(ctx));
         XAML_RETURN_IF_FAILED(xaml_valignment_register(ctx));
+        XAML_RETURN_IF_FAILED(xaml_main_window_register(ctx));
         XAML_META_CONTEXT_ADD_BASIC_TYPE(xaml_size);
         XAML_META_CONTEXT_ADD_BASIC_TYPE(xaml_point);
         XAML_META_CONTEXT_ADD_BASIC_TYPE(xaml_rectangle);

@@ -3,6 +3,7 @@
 #include <rapidxml/xml_document.hpp>
 #include <sstream>
 #include <vector>
+#include <string_view>
 
 using namespace std;
 
