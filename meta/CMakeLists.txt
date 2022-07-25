@@ -27,6 +27,7 @@ if(${BUILD_SHARED_LIBS})
 endif()
 
 if(${XAML_INSTALL})
+    install(TARGETS xaml_meta)
     install(FILES ${META_HEADERS} DESTINATION include/xaml/meta)
 endif()
 

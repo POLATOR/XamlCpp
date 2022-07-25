@@ -19,5 +19,6 @@ if(${BUILD_SHARED_LIBS})
 endif()
 
 if(${XAML_INSTALL})
+    install(TARGETS xaml_markup)
     install(FILES ${XAML_MARKUP_HEADERS} DESTINATION include/xaml/markup)
 endif()

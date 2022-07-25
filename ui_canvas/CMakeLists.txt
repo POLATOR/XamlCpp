@@ -46,6 +46,7 @@ endif()
 target_compile_definitions(xaml_ui_canvas PRIVATE "_USE_MATH_DEFINES")
 
 if(${XAML_INSTALL})
+    install(TARGETS xaml_ui_canvas)
     install(FILES ${CV_HEADERS} DESTINATION include/xaml/ui/controls)
     install(FILES ${CV_WINDOWS_HEADERS} DESTINATION include/xaml/ui/win/controls)
     install(FILES ${CV_COCOA_HEADERS} DESTINATION include/xaml/ui/cocoa/controls)

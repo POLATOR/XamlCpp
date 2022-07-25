@@ -20,6 +20,7 @@ if(${BUILD_SHARED_LIBS})
 endif()
 
 if(${XAML_INSTALL})
+    install(TARGETS xaml_parser)
     install(FILES ${XAML_HEADERS} DESTINATION include/xaml/parser)
 endif()
 

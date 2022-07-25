@@ -54,6 +54,7 @@ if(${BUILD_SHARED_LIBS})
 endif()
 
 if(${XAML_INSTALL})
+    install(TARGETS xaml_global)
     install(FILES ${GLOBAL_HEADERS} DESTINATION include/xaml)
 endif()
 

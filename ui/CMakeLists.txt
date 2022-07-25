@@ -47,6 +47,7 @@ elseif(${BUILD_QT6})
 endif()
 
 if(${XAML_INSTALL})
+    install(TARGETS xaml_ui)
     install(FILES ${UI_HEADERS} DESTINATION include/xaml/ui)
     install(FILES ${UI_WINDOWS_HEADERS} DESTINATION include/xaml/ui/win)
     install(FILES ${UI_COCOA_HEADERS} DESTINATION include/xaml/ui/cocoa)

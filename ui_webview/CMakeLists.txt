@@ -81,6 +81,7 @@ elseif(${BUILD_QT5})
 endif()
 
 if(${XAML_INSTALL})
+    install(TARGETS xaml_ui_webview)
     install(FILES ${WV_HEADERS} DESTINATION include/xaml/ui/controls)
 endif()
 

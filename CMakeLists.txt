@@ -280,16 +280,37 @@ if(${BUILD_RESOURCE_COMPILER})
     add_subdirectory(resource_compiler)
     list(APPEND _XAML_TARGETS xamlrc)
 endif()
-
+    set(INCLUDE_INSTALL_DIR include/  )
+    set(LIB_INSTALL_DIR lib/ )
 if(${XAML_INSTALL})
-     install(
+    install(
         TARGETS ${_XAML_TARGETS}
         EXPORT xaml-targets
         ARCHIVE DESTINATION lib
         LIBRARY DESTINATION lib
         RUNTIME DESTINATION bin
     )
-    install(EXPORT xaml-targets DESTINATION lib/cmake/xaml)
-    configure_file(cmake/xaml-config.cmake.in ${PROJECT_BINARY_DIR}/xaml-config.cmake @ONLY)
-    install(FILES ${PROJECT_BINARY_DIR}/xaml-config.cmake DESTINATION lib/cmake/xaml)
+    export(EXPORT xaml-targets
+      FILE "${CMAKE_CURRENT_BINARY_DIR}/xaml/xaml-targets.cmake"
+      NAMESPACE xaml::
+    )
+
+    include(CMakePackageConfigHelpers)
+
+    configure_package_config_file(cmake/xaml-config.cmake.in ${PROJECT_BINARY_DIR}/xaml-config.cmake 
+    INSTALL_DESTINATION ${LIB_INSTALL_DIR}/xaml/cmake
+    PATH_VARS INCLUDE_INSTALL_DIR )
+    message( ${CMAKE_CURRENT_BINARY_DIR}/xaml-config.cmake)
+    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/xaml-config.cmake
+    DESTINATION ${LIB_INSTALL_DIR}/cmake/xaml )
+
+    install(EXPORT xaml-targets
+      FILE
+        xaml-targets.cmake
+      NAMESPACE
+        xaml::
+      DESTINATION
+        ${LIB_INSTALL_DIR}/cmake/xaml
+    )
+
 endif()

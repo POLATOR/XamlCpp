@@ -20,5 +20,6 @@ if(${BUILD_SHARED_LIBS})
 endif()
 
 if(${XAML_INSTALL})
+    install(TARGETS xaml_cmdline)
     install(FILES ${CMDLINE_HEADERS} DESTINATION include/xaml/cmdline)
 endif()
