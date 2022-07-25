@@ -31,7 +31,7 @@ xaml_result CreateCurve(xaml_test_model * model, const std::string & curveName)
     }
     xaml_ptr<xaml_string> curveData;
     XAML_RETURN_IF_FAILED(xaml_string_new(stream.str(), &curveData));
-    return model->set_diagramData(curveData);
+    return model->set_curveData(curveData);
 }
 
 } // namespace
