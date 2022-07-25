@@ -2,6 +2,7 @@
 #include <xaml/ui/controls/button.h>
 #include <xaml/ui/controls/check_box.h>
 #include <xaml/ui/controls/combo_box.h>
+#include <xaml/ui/controls/diagram.h>
 #include <xaml/ui/controls/entry.h>
 #include <xaml/ui/controls/grid.h>
 #include <xaml/ui/controls/label.h>
@@ -50,6 +51,7 @@ struct xaml_module_info_impl : xaml_implement<xaml_module_info_impl, xaml_module
         XAML_RETURN_IF_FAILED(xaml_separator_menu_item_register(ctx));
         XAML_RETURN_IF_FAILED(xaml_orientation_register(ctx));
         XAML_RETURN_IF_FAILED(xaml_grid_layout_register(ctx));
+        XAML_RETURN_IF_FAILED(xaml_diagram_register(ctx));
         XAML_META_CONTEXT_ADD_BASIC_TYPE(xaml_grid_length);
         return XAML_S_OK;
     }
