@@ -6,7 +6,7 @@
     <test:converter x:key="conv"/>
   </test:window.resources>
   <test:window.model>
-    <test:model x:name="model" text="&#x1f923;" curveData="\u0008"/>
+  <test:model x:name="model" text="&#x1f923;" curveData=""/>
   </test:window.model>
   <grid margin="10" columns="1*, 1*, 0.8*" rows="auto, auto, 0.5*, 0.8*">
     <diagram x:name="plot" xScaleLabel="X Label" yScaleLabel="Y Label" curveData="{binding curveData,element=model,mode=one_way}"/>
