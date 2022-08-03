@@ -1,13 +1,23 @@
 #include "window.hpp"
 #include <xaml/ui/main_window.h>
+#include <xaml/meta/dynamic_type.h>
+#include <xaml/meta/meta_macros.h>
 
 
-struct xaml_main_window_impl :  xaml_window_implement<xaml_main_window_impl, xaml_window_internal, xaml_main_window>{
+struct xaml_main_window_impl : public xaml_window_implement<xaml_main_window_impl, xaml_window_internal, xaml_main_window>{
 	XAML_PROP_PTR_IMPL(view_model, xaml_dynamic_object);
+    xaml_result XAML_CALL init() noexcept override 
+    {
+        XAML_RETURN_IF_FAILED(xaml_window_implement::init());
+        XAML_RETURN_IF_FAILED(xaml_dynamic_object_new(&m_view_model, &xaml_guid_xaml_dynamic_object));
+
+        return XAML_S_OK;
+    }
 };
 
 
-EXTERN_C xaml_result XAML_CALL xaml_main_window_new(xaml_main_window**ptr) XAML_NOEXCEPT {
+EXTERN_C xaml_result XAML_CALL xaml_main_window_new(xaml_main_window ** ptr) XAML_NOEXCEPT
+{
 	return xaml_object_init<xaml_main_window_impl>(ptr);
 }
 EXTERN_C xaml_result XAML_CALL xaml_main_window_members(xaml_type_info_registration* __info) XAML_NOEXCEPT {

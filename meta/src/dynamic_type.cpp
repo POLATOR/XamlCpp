@@ -18,10 +18,16 @@ struct xaml_dynamic_object_impl : xaml_weak_implement<xaml_dynamic_object_impl, 
 
 };
 
-xaml_result XAML_CALL xaml_dynamic_object_new(xaml_object** ptr, xaml_guid* id)
+xaml_result XAML_CALL xaml_dynamic_object_new(xaml_object ** ptr, xaml_guid const * id)
 {
 	xaml_dynamic_object_impl *ptrNew;
 	(xaml_object_new<xaml_dynamic_object_impl>(&ptrNew));
 	*ptr = ptrNew;
 	return ptrNew->set_guid(&xaml_guid_xaml_dynamic_object);
+}
+
+xaml_result XAML_CALL xaml_dynamic_object_new(xaml_dynamic_object ** ptr, xaml_guid const * id)
+{
+    *ptr = new xaml_dynamic_object_impl;
+    return (*ptr)->set_guid(&xaml_guid_xaml_dynamic_object);
 }

@@ -13,7 +13,7 @@ XAML_CLASS(xaml_main_window, { 0x707783a5, 0x5622, 0x46cb, { 0xaa, 0x25, 0x6, 0x
 XAML_DECL_INTERFACE_(xaml_main_window, xaml_window)
 {
     XAML_DECL_VTBL(xaml_main_window, XAML_MAIN_WINDOW_VTBL);
-
+    
 };
 
 EXTERN_C XAML_UI_API xaml_result XAML_CALL xaml_main_window_new(xaml_main_window**) XAML_NOEXCEPT;
