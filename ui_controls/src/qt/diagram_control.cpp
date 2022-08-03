@@ -1,4 +1,4 @@
-#include <qt/diagram-control.h>
+#include <qt/diagram_control.h>
 #include <xaml/ui/controls/diagram.h>
 
 #include <QPen>
