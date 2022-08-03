@@ -9,7 +9,7 @@ xaml_result XAML_CALL xaml_text_box_internal::init() noexcept
     XAML_RETURN_IF_FAILED(xaml_control_internal::init());
 
     XAML_RETURN_IF_FAILED(xaml_event_new(&m_text_changed));
-
+    xaml_string_new("", &m_text);
     int32_t token;
     XAML_RETURN_IF_FAILED((m_text_changed->add(
         [this](xaml_object*, xaml_string*) noexcept -> xaml_result {
@@ -37,6 +37,7 @@ xaml_result XAML_CALL xaml_text_box_members(xaml_type_info_registration* __info)
     XAML_TYPE_INFO_ADD_CTOR(xaml_text_box_new);
     XAML_TYPE_INFO_ADD_PROP_EVENT(text, xaml_string);
     XAML_TYPE_INFO_ADD_DEF_PROP(text);
+
     return XAML_S_OK;
 }
 

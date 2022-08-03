@@ -15,4 +15,5 @@ XAML_DECL_INTERFACE_(xaml_dynamic_object, xaml_object)
 
 };
 
-xaml_result XAML_CALL xaml_dynamic_object_new(xaml_object** ptr, xaml_guid* id);
+XAML_META_API xaml_result XAML_CALL xaml_dynamic_object_new(xaml_object ** ptr, xaml_guid const * id);
+XAML_META_API xaml_result XAML_CALL xaml_dynamic_object_new(xaml_dynamic_object ** ptr, xaml_guid const * id);
