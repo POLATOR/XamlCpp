@@ -9,8 +9,8 @@ struct xaml_combo_box_internal : xaml_items_base_internal
     XAML_EVENT_IMPL(text_changed, xaml_object, xaml_string)
     XAML_PROP_STRING_EVENT_IMPL(text)
 
-    XAML_EVENT_IMPL(topHeader_changed, xaml_object, xaml_string)
-    XAML_PROP_STRING_EVENT_IMPL(topHeader)
+    XAML_EVENT_IMPL(top_header_changed, xaml_object, xaml_string)
+    XAML_PROP_STRING_EVENT_IMPL(top_header)
 
     XAML_EVENT_IMPL(is_editable_changed, xaml_object, bool)
     XAML_PROP_EVENT_IMPL(is_editable, bool, bool *, bool)
@@ -20,7 +20,7 @@ struct xaml_combo_box_internal : xaml_items_base_internal
     virtual xaml_result XAML_CALL draw_text() noexcept;
     virtual xaml_result XAML_CALL draw_sel() noexcept;
     virtual xaml_result XAML_CALL draw_editable() noexcept;
-    virtual xaml_result XAML_CALL draw_topHeader() noexcept;
+    virtual xaml_result XAML_CALL draw_top_header() noexcept;
 
     xaml_result XAML_CALL insert_item(std::int32_t index, xaml_ptr<xaml_object> const & value) noexcept override;
     xaml_result XAML_CALL remove_item(std::int32_t index) noexcept override;
@@ -47,8 +47,8 @@ struct xaml_combo_box_impl : xaml_items_base_implement<xaml_combo_box_impl, xaml
     XAML_EVENT_INTERNAL_IMPL(text_changed, xaml_object, xaml_string)
     XAML_PROP_PTR_INTERNAL_IMPL(text, xaml_string)
 
-    XAML_EVENT_INTERNAL_IMPL(topHeader_changed, xaml_object, xaml_string)
-    XAML_PROP_PTR_INTERNAL_IMPL(topHeader, xaml_string)
+    XAML_EVENT_INTERNAL_IMPL(top_header_changed, xaml_object, xaml_string)
+    XAML_PROP_PTR_INTERNAL_IMPL(top_header, xaml_string)
 
     XAML_EVENT_INTERNAL_IMPL(is_editable_changed, xaml_object, bool)
     XAML_PROP_INTERNAL_IMPL(is_editable, bool *, bool)

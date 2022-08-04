@@ -22,11 +22,11 @@ xaml_result XAML_CALL xaml_entry_internal::init() noexcept
         },
         &token)));
 
-    XAML_RETURN_IF_FAILED(xaml_event_new(&m_topHeader_changed));
-    XAML_RETURN_IF_FAILED((m_topHeader_changed->add(
+    XAML_RETURN_IF_FAILED(xaml_event_new(&m_top_header_changed));
+    XAML_RETURN_IF_FAILED((m_top_header_changed->add(
         [this](xaml_object *, xaml_string *) noexcept -> xaml_result {
             if (m_handle) {
-                XAML_RETURN_IF_FAILED(draw_topHeader());
+                XAML_RETURN_IF_FAILED(draw_top_header());
                 XAML_RETURN_IF_FAILED(parent_redraw());
             }
             return XAML_S_OK;
@@ -46,7 +46,7 @@ xaml_result XAML_CALL xaml_entry_members(xaml_type_info_registration * __info) n
     XAML_RETURN_IF_FAILED(xaml_control_members(__info));
     XAML_TYPE_INFO_ADD_CTOR(xaml_entry_new);
     XAML_TYPE_INFO_ADD_PROP_EVENT(text, xaml_string);
-    XAML_TYPE_INFO_ADD_PROP_EVENT(topHeader, xaml_string);
+    XAML_TYPE_INFO_ADD_PROP_EVENT(top_header, xaml_string);
     XAML_TYPE_INFO_ADD_PROP(text_halignment, xaml_halignment);
     XAML_TYPE_INFO_ADD_DEF_PROP(text);
     return XAML_S_OK;

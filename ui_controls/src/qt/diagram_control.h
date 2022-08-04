@@ -13,15 +13,15 @@ class DiagramControl : public QwtPlot
 public:
     DiagramControl(QWidget * parent = nullptr);
 
-    void addSeries(const QString & curveDataData);
+    void addSeries(const QString & curve_dataData);
 
     void resetCurves();
 
     void setAxisScale(QwtAxisId axisId, const QString & scaleData);
 
-    void setCurveColor(const QString & curveColorData);
+    void setCurveColor(const QString & curve_colorData);
 
-    void setCurveTitle(const QString & curveTitleData);
+    void setCurveTitle(const QString & curve_titleData);
 
 private:
     class DiagramData;

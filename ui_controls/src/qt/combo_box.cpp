@@ -17,7 +17,7 @@ xaml_result xaml_combo_box_internal::draw(xaml_rectangle const & region) noexcep
         XAML_RETURN_IF_FAILED(draw_sel());
         XAML_RETURN_IF_FAILED(draw_editable());
         XAML_RETURN_IF_FAILED(draw_visible());
-        XAML_RETURN_IF_FAILED(draw_topHeader());
+        XAML_RETURN_IF_FAILED(draw_top_header());
         QObject::connect(combo, QOverload<int>::of(&QComboBox::currentIndexChanged), xaml_mem_fn(&xaml_combo_box_internal::on_current_index_changed, this));
         QObject::connect(combo, &QComboBox::currentTextChanged, xaml_mem_fn(&xaml_combo_box_internal::on_current_text_changed, this));
     }
@@ -71,11 +71,11 @@ xaml_result xaml_combo_box_internal::draw_editable() noexcept
     return XAML_S_OK;
 }
 
-xaml_result xaml_combo_box_internal::draw_topHeader() noexcept
+xaml_result xaml_combo_box_internal::draw_top_header() noexcept
 {
     if (auto edit = dynamic_cast<XComboBox *>(m_handle)) {
         QString text;
-        XAML_RETURN_IF_FAILED(to_QString(m_topHeader, &text));
+        XAML_RETURN_IF_FAILED(to_QString(m_top_header, &text));
         edit->setHeader(text);
     }
     return XAML_S_OK;

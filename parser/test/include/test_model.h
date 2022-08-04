@@ -31,8 +31,8 @@ XAML_CLASS(xaml_test_model, {0x16fd8017, 0x13f2, 0x4fd4, {0xaa, 0x86, 0x7c, 0x28
     XAML_VTBL_INHERIT(XAML_OBJECT_VTBL(type));                                                                                                                 \
     XAML_PROP(text, type, xaml_string **, xaml_string *);                                                                                                      \
     XAML_EVENT(text_changed, type, xaml_object, xaml_string);                                                                                                  \
-    XAML_PROP(curveData, type, xaml_string **, xaml_string *);                                                                                                 \
-    XAML_EVENT(curveData_changed, type, xaml_object, xaml_string);                                                                                             \
+    XAML_PROP(curve_data, type, xaml_string **, xaml_string *);                                                                                                \
+    XAML_EVENT(curve_data_changed, type, xaml_object, xaml_string);                                                                                            \
     XAML_PROP(items, type, XAML_OBSERVABLE_VECTOR_1_NAME(xaml_object) **, XAML_OBSERVABLE_VECTOR_1_NAME(xaml_object) *)
 
 XAML_DECL_INTERFACE_(xaml_test_model, xaml_object)

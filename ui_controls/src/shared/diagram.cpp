@@ -9,8 +9,8 @@ xaml_result xaml_diagram_internal::init() noexcept
 
     int32_t token = 0;
 
-    XAML_RETURN_IF_FAILED(xaml_event_new(&m_xScaleLabel_changed));
-    XAML_RETURN_IF_FAILED((m_xScaleLabel_changed->add(
+    XAML_RETURN_IF_FAILED(xaml_event_new(&m_x_scale_label_changed));
+    XAML_RETURN_IF_FAILED((m_x_scale_label_changed->add(
         [this](xaml_object *, xaml_string *) noexcept -> xaml_result {
             if (m_handle) {
                 XAML_RETURN_IF_FAILED(setXLabel());
@@ -20,8 +20,8 @@ xaml_result xaml_diagram_internal::init() noexcept
         },
         &token)));
 
-    XAML_RETURN_IF_FAILED(xaml_event_new(&m_xScaleRange_changed));
-    XAML_RETURN_IF_FAILED((m_xScaleRange_changed->add(
+    XAML_RETURN_IF_FAILED(xaml_event_new(&m_x_scale_range_changed));
+    XAML_RETURN_IF_FAILED((m_x_scale_range_changed->add(
         [this](xaml_object *, xaml_string *) noexcept -> xaml_result {
             if (m_handle) {
                 XAML_RETURN_IF_FAILED(setXRange());
@@ -31,8 +31,8 @@ xaml_result xaml_diagram_internal::init() noexcept
         },
         &token)));
 
-    XAML_RETURN_IF_FAILED(xaml_event_new(&m_yScaleLabel_changed));
-    XAML_RETURN_IF_FAILED((m_yScaleLabel_changed->add(
+    XAML_RETURN_IF_FAILED(xaml_event_new(&m_y_scale_label_changed));
+    XAML_RETURN_IF_FAILED((m_y_scale_label_changed->add(
         [this](xaml_object *, xaml_string *) noexcept -> xaml_result {
             if (m_handle) {
                 XAML_RETURN_IF_FAILED(setYLabel());
@@ -42,8 +42,8 @@ xaml_result xaml_diagram_internal::init() noexcept
         },
         &token)));
 
-    XAML_RETURN_IF_FAILED(xaml_event_new(&m_yScaleRange_changed));
-    XAML_RETURN_IF_FAILED((m_yScaleRange_changed->add(
+    XAML_RETURN_IF_FAILED(xaml_event_new(&m_y_scale_range_changed));
+    XAML_RETURN_IF_FAILED((m_y_scale_range_changed->add(
         [this](xaml_object *, xaml_string *) noexcept -> xaml_result {
             if (m_handle) {
                 XAML_RETURN_IF_FAILED(setYRange());
@@ -53,8 +53,8 @@ xaml_result xaml_diagram_internal::init() noexcept
         },
         &token)));
 
-    XAML_RETURN_IF_FAILED(xaml_event_new(&m_curveColor_changed));
-    XAML_RETURN_IF_FAILED((m_curveColor_changed->add(
+    XAML_RETURN_IF_FAILED(xaml_event_new(&m_curve_color_changed));
+    XAML_RETURN_IF_FAILED((m_curve_color_changed->add(
         [this](xaml_object *, xaml_string *) noexcept -> xaml_result {
             if (m_handle) {
                 XAML_RETURN_IF_FAILED(setCurveColor());
@@ -64,8 +64,8 @@ xaml_result xaml_diagram_internal::init() noexcept
         },
         &token)));
 
-    XAML_RETURN_IF_FAILED(xaml_event_new(&m_curveTitle_changed));
-    XAML_RETURN_IF_FAILED((m_curveTitle_changed->add(
+    XAML_RETURN_IF_FAILED(xaml_event_new(&m_curve_title_changed));
+    XAML_RETURN_IF_FAILED((m_curve_title_changed->add(
         [this](xaml_object *, xaml_string *) noexcept -> xaml_result {
             if (m_handle) {
                 XAML_RETURN_IF_FAILED(setCurveTitle());
@@ -75,8 +75,8 @@ xaml_result xaml_diagram_internal::init() noexcept
         },
         &token)));
 
-    XAML_RETURN_IF_FAILED(xaml_event_new(&m_curveData_changed));
-    XAML_RETURN_IF_FAILED((m_curveData_changed->add(
+    XAML_RETURN_IF_FAILED(xaml_event_new(&m_curve_data_changed));
+    XAML_RETURN_IF_FAILED((m_curve_data_changed->add(
         [this](xaml_object *, xaml_string *) noexcept -> xaml_result {
             if (m_handle) {
                 XAML_RETURN_IF_FAILED(addCurveData());
@@ -99,13 +99,13 @@ xaml_result XAML_CALL xaml_diagram_members(xaml_type_info_registration * __info)
     using self_type = xaml_diagram;
     XAML_RETURN_IF_FAILED(xaml_control_members(__info));
     XAML_TYPE_INFO_ADD_CTOR(xaml_diagram_new);
-    XAML_TYPE_INFO_ADD_PROP_EVENT(xScaleLabel, xaml_string);
-    XAML_TYPE_INFO_ADD_PROP_EVENT(xScaleRange, xaml_string);
-    XAML_TYPE_INFO_ADD_PROP_EVENT(yScaleLabel, xaml_string);
-    XAML_TYPE_INFO_ADD_PROP_EVENT(yScaleRange, xaml_string);
-    XAML_TYPE_INFO_ADD_PROP_EVENT(curveColor, xaml_string);
-    XAML_TYPE_INFO_ADD_PROP_EVENT(curveTitle, xaml_string);
-    XAML_TYPE_INFO_ADD_PROP_EVENT(curveData, xaml_string);
+    XAML_TYPE_INFO_ADD_PROP_EVENT(x_scale_label, xaml_string);
+    XAML_TYPE_INFO_ADD_PROP_EVENT(x_scale_range, xaml_string);
+    XAML_TYPE_INFO_ADD_PROP_EVENT(y_scale_label, xaml_string);
+    XAML_TYPE_INFO_ADD_PROP_EVENT(y_scale_range, xaml_string);
+    XAML_TYPE_INFO_ADD_PROP_EVENT(curve_color, xaml_string);
+    XAML_TYPE_INFO_ADD_PROP_EVENT(curve_title, xaml_string);
+    XAML_TYPE_INFO_ADD_PROP_EVENT(curve_data, xaml_string);
     return XAML_S_OK;
 }
 

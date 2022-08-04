@@ -7,20 +7,20 @@ XAML_CLASS(xaml_diagram, {0xcb87a70f, 0x121a, 0x40e8, {0x88, 0x60, 0x8b, 0x26, 0
 
 #define XAML_DIAGRAM_VTBL(type)                                                                                                                                \
     XAML_VTBL_INHERIT(XAML_CONTROL_VTBL(type));                                                                                                                \
-    XAML_PROP(xScaleLabel, type, xaml_string **, xaml_string *);                                                                                               \
-    XAML_EVENT(xScaleLabel_changed, type, xaml_object, xaml_string);                                                                                           \
-    XAML_PROP(xScaleRange, type, xaml_string **, xaml_string *);                                                                                               \
-    XAML_EVENT(xScaleRange_changed, type, xaml_object, xaml_string);                                                                                           \
-    XAML_PROP(yScaleLabel, type, xaml_string **, xaml_string *);                                                                                               \
-    XAML_EVENT(yScaleLabel_changed, type, xaml_object, xaml_string);                                                                                           \
-    XAML_PROP(yScaleRange, type, xaml_string **, xaml_string *);                                                                                               \
-    XAML_EVENT(yScaleRange_changed, type, xaml_object, xaml_string);                                                                                           \
-    XAML_PROP(curveColor, type, xaml_string **, xaml_string *);                                                                                                \
-    XAML_EVENT(curveColor_changed, type, xaml_object, xaml_string);                                                                                            \
-    XAML_PROP(curveTitle, type, xaml_string **, xaml_string *);                                                                                                \
-    XAML_EVENT(curveTitle_changed, type, xaml_object, xaml_string);                                                                                            \
-    XAML_PROP(curveData, type, xaml_string **, xaml_string *);                                                                                                 \
-    XAML_EVENT(curveData_changed, type, xaml_object, xaml_string);                                                                                             \
+    XAML_PROP(x_scale_label, type, xaml_string **, xaml_string *);                                                                                             \
+    XAML_EVENT(x_scale_label_changed, type, xaml_object, xaml_string);                                                                                         \
+    XAML_PROP(x_scale_range, type, xaml_string **, xaml_string *);                                                                                             \
+    XAML_EVENT(x_scale_range_changed, type, xaml_object, xaml_string);                                                                                         \
+    XAML_PROP(y_scale_label, type, xaml_string **, xaml_string *);                                                                                             \
+    XAML_EVENT(y_scale_label_changed, type, xaml_object, xaml_string);                                                                                         \
+    XAML_PROP(y_scale_range, type, xaml_string **, xaml_string *);                                                                                             \
+    XAML_EVENT(y_scale_range_changed, type, xaml_object, xaml_string);                                                                                         \
+    XAML_PROP(curve_color, type, xaml_string **, xaml_string *);                                                                                               \
+    XAML_EVENT(curve_color_changed, type, xaml_object, xaml_string);                                                                                           \
+    XAML_PROP(curve_title, type, xaml_string **, xaml_string *);                                                                                               \
+    XAML_EVENT(curve_title_changed, type, xaml_object, xaml_string);                                                                                           \
+    XAML_PROP(curve_data, type, xaml_string **, xaml_string *);                                                                                                \
+    XAML_EVENT(curve_data_changed, type, xaml_object, xaml_string);                                                                                            \
     XAML_PROP(reset, type, bool *, bool)
 
 XAML_DECL_INTERFACE_(xaml_diagram, xaml_control)

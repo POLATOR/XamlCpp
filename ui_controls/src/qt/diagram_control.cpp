@@ -102,9 +102,9 @@ DiagramControl::DiagramControl(QWidget * parent)
     replot();
 }
 
-void DiagramControl::addSeries(const QString & curveDataData)
+void DiagramControl::addSeries(const QString & curve_dataData)
 {
-    auto data = parseData(curveDataData);
+    auto data = parseData(curve_dataData);
     auto diagramData = detectDiagramData(data);
     if (!diagramData) {
         return;
@@ -140,9 +140,9 @@ void DiagramControl::setAxisScale(QwtAxisId axisId, const QString & scaleData)
     }
 }
 
-void DiagramControl::setCurveColor(const QString & curveColorData)
+void DiagramControl::setCurveColor(const QString & curve_colorData)
 {
-    auto data = parseData(curveColorData);
+    auto data = parseData(curve_colorData);
     if (data.size() != 2) {
         return;
     }
@@ -154,9 +154,9 @@ void DiagramControl::setCurveColor(const QString & curveColorData)
     QMetaObject::invokeMethod(canvas(), "replot", Qt::DirectConnection);
 }
 
-void DiagramControl::setCurveTitle(const QString & curveTitleData)
+void DiagramControl::setCurveTitle(const QString & curve_titleData)
 {
-    auto data = parseData(curveTitleData);
+    auto data = parseData(curve_titleData);
     if (data.size() != 2) {
         return;
     }

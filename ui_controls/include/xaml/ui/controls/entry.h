@@ -9,8 +9,8 @@ XAML_CLASS(xaml_entry, {0x483715fa, 0x1124, 0x4d4f, {0x9e, 0x34, 0x36, 0xeb, 0xc
     XAML_VTBL_INHERIT(XAML_CONTROL_VTBL(type));                                                                                                                \
     XAML_PROP(text, type, xaml_string **, xaml_string *);                                                                                                      \
     XAML_EVENT(text_changed, type, xaml_object, xaml_string);                                                                                                  \
-    XAML_PROP(topHeader, type, xaml_string **, xaml_string *);                                                                                                 \
-    XAML_EVENT(topHeader_changed, type, xaml_object, xaml_string);                                                                                             \
+    XAML_PROP(top_header, type, xaml_string **, xaml_string *);                                                                                                \
+    XAML_EVENT(top_header_changed, type, xaml_object, xaml_string);                                                                                            \
     XAML_PROP(text_halignment, type, xaml_halignment *, xaml_halignment)
 
 XAML_DECL_INTERFACE_(xaml_entry, xaml_control)

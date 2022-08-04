@@ -3,22 +3,23 @@
 #include <QMetaObject>
 #include <shared/application.hpp>
 
-xaml_result xaml_application_impl::init(int argc, char** argv) noexcept
+xaml_result xaml_application_impl::init(int argc, char ** argv) noexcept
 {
     XAML_RETURN_IF_FAILED(xaml_event_new(&m_activate));
     XAML_RETURN_IF_FAILED(xaml_vector_new(&m_cmd_lines));
     m_argc = argc;
 #ifdef XAML_UI_QT5
     QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+#else
+    QApplication::setHighDpiScaleFactorRoundingPolicy(Qt::HighDpiScaleFactorRoundingPolicy::Round);
 #endif
     if (qApp == nullptr) {
-        static auto* app = new QApplication(argc, argv);
+        static auto * app = new QApplication(argc, argv);
     }
     m_native_app = qApp;
-    
+
     QObject::connect(m_native_app, &QGuiApplication::lastWindowClosed, m_native_app, &QCoreApplication::quit, Qt::QueuedConnection);
-    for (int i = 0; i < m_argc; i++)
-    {
+    for (int i = 0; i < m_argc; i++) {
         xaml_ptr<xaml_string> arg;
         XAML_RETURN_IF_FAILED(xaml_string_new(argv[i], &arg));
         XAML_RETURN_IF_FAILED(m_cmd_lines->append(arg));
@@ -28,16 +29,16 @@ xaml_result xaml_application_impl::init(int argc, char** argv) noexcept
 
 xaml_result XAML_CALL xaml_application_impl::invoke_in_gui_thread(std::function<void()> function) noexcept
 {
-  try{
-      QMetaObject::invokeMethod(qApp, function);
-  }
-  catch (...) {
-      return -1;
-  }
-  return {};
+    try {
+        QMetaObject::invokeMethod(qApp, function);
+    }
+    catch (...) {
+        return -1;
+    }
+    return {};
 }
 
-xaml_result xaml_application_impl::run(int* pvalue) noexcept
+xaml_result xaml_application_impl::run(int * pvalue) noexcept
 {
     xaml_ptr<xaml_event_args> args;
     XAML_RETURN_IF_FAILED(xaml_event_args_empty(&args));
@@ -54,7 +55,7 @@ xaml_result xaml_application_impl::quit(int value) noexcept
     return XAML_S_OK;
 }
 
-xaml_result xaml_application_impl::get_theme(xaml_application_theme* ptheme) noexcept
+xaml_result xaml_application_impl::get_theme(xaml_application_theme * ptheme) noexcept
 {
     auto back = m_native_app->palette().color(QPalette::Window);
     *ptheme = back.green() > 127 ? xaml_application_theme_light : xaml_application_theme_dark;

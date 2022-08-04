@@ -13,7 +13,7 @@ struct xaml_spin_box_int_internal : xaml_spin_box_base_internal
     xaml_result XAML_CALL draw_min() noexcept override;
     xaml_result XAML_CALL draw_max() noexcept override;
     xaml_result XAML_CALL draw_step() noexcept override;
-    xaml_result XAML_CALL draw_topHeader() noexcept override;
+    xaml_result XAML_CALL draw_top_header() noexcept override;
 
     xaml_result XAML_CALL init() noexcept override;
 };

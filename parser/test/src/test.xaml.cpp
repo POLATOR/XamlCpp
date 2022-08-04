@@ -29,9 +29,9 @@ xaml_result CreateCurve(xaml_test_model * model, const std::string & curveName)
     for (int i = 0; i < 100; ++i) {
         stream << SEPARTOR << dist(generator);
     }
-    xaml_ptr<xaml_string> curveData;
-    XAML_RETURN_IF_FAILED(xaml_string_new(stream.str(), &curveData));
-    return model->set_curveData(curveData);
+    xaml_ptr<xaml_string> curve_data;
+    XAML_RETURN_IF_FAILED(xaml_string_new(stream.str(), &curve_data));
+    return model->set_curve_data(curve_data);
 }
 
 } // namespace

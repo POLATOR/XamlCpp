@@ -6,11 +6,10 @@
     <test:converter x:key="conv"/>
   </test:window.resources>
   <test:window.model>
-  <test:model x:name="model" text="&#x1f923;" curveData=""/>
+  <test:model x:name="model" text="&#x1f923;" curve_data=""/>
   </test:window.model>
   <grid margin="10" columns="1*, 1*, 0.8*" rows="auto, auto, 0.5*, 0.8*,auto">
-    <diagram x:name="plot" xScaleLabel="X Label" yScaleLabel="Y Label" curveData="{binding curveData,element=model,mode=one_way}"/>
-    <!--<label margin="10" text_halignment="right" valignment="center">Username:</label>-->
+    <diagram x:name="plot" x_scale_label="X Label" y_scale_label="Y Label" curve_data="{binding curve_data,element=model,mode=one_way}"/>
     <entry grid.column="1" margin="0, 5" valignment="center">John</entry>
     <label grid.row="1" margin="10" text_halignment="right" valignment="center">Password:</label>
     <password_entry grid.column="1" grid.row="1" margin="0, 5" valignment="center">123456</password_entry>
@@ -48,28 +47,5 @@
         </data_template>
       </combo_box.items_template>
     </combo_box>
-      <grid columns="auto" rows="40,80,40,80,40,288,40">
-          <label grid.row="0" margin="24, 8, 24, 8" text_halignment="left" valignment="center">Настройки параметров связи с СВЧ генератором</label>
-          <grid grid.row="1" columns="184,104,auto" rows="80">
-              <entry grid.column="0" margin="24, 24, 24, 0" valignment="center" topHeader="IP">192.168.100.91</entry>
-              <entry grid.column="0" margin="24, 24, 24, 0" valignment="center" topHeader="Port">5080</entry>
-          </grid>
-          <label grid.row="2" margin="24, 8, 24, 8" text_halignment="left" valignment="center">Настройки параметров связи с измерителем мощности</label>
-          <grid grid.row="3" columns="184,104,auto" rows="80">
-              <entry grid.column="0" margin="24, 24, 24, 0" valignment="center" topHeader="IP">192.168.100.92</entry>
-              <entry grid.column="1" margin="24, 24, 24, 0" valignment="center" topHeader="Port">8080</entry>
-          </grid>
-          <label grid.row="4" margin="24, 8, 24, 8" text_halignment="left" valignment="center">Настройки параметров связи с СВЧ генератором</label>
-          <grid grid.row="5" margin="12, 32, 12, 32" columns="244,244" rows="56,56,56,56">
-              <entry grid.row="0" margin="12,0,12,0" valignment="center" topHeader="Id комплекта">658110-01</entry>
-              <spin_box_int grid.row="1" margin="12,0,12,0" valignment="center" topHeader="Температура, °С">17</spin_box_int>
-              <spin_box_double grid.row="2" margin="12,0,12,0" valignment="center" topHeader="Допуск, ±°С" min="-0,5" max="1,0" step="0,05" decimals="2">0.3</spin_box_double>
-              <spin_box_int grid.column="1" grid.row="1" margin="12,0,12,0" valignment="center" topHeader="Частота генератора, МГц" min="100" max="1000" step="10">350</spin_box_int>
-              <spin_box_int grid.column="1" grid.row="2" margin="12,0,12,0" valignment="center" topHeader="Мощность генератора, дБм" min="100" max="1000" step="10">150</spin_box_int>
-          </grid>
-          <grid grid.row="6" columns="1*,auto" rows="auto">
-              <button is_default="true" valignment="center" halignment="left" text="Применить"/>
-          </grid>
-      </grid>
   </grid>
 </test:window>

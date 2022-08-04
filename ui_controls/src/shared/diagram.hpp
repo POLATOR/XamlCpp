@@ -6,26 +6,26 @@
 
 struct xaml_diagram_internal : xaml_control_internal
 {
-    XAML_EVENT_IMPL(xScaleLabel_changed, xaml_object, xaml_string)
-    XAML_PROP_STRING_EVENT_IMPL(xScaleLabel)
+    XAML_EVENT_IMPL(x_scale_label_changed, xaml_object, xaml_string)
+    XAML_PROP_STRING_EVENT_IMPL(x_scale_label)
 
-    XAML_EVENT_IMPL(xScaleRange_changed, xaml_object, xaml_string)
-    XAML_PROP_STRING_EVENT_IMPL(xScaleRange)
+    XAML_EVENT_IMPL(x_scale_range_changed, xaml_object, xaml_string)
+    XAML_PROP_STRING_EVENT_IMPL(x_scale_range)
 
-    XAML_EVENT_IMPL(yScaleLabel_changed, xaml_object, xaml_string)
-    XAML_PROP_STRING_EVENT_IMPL(yScaleLabel)
+    XAML_EVENT_IMPL(y_scale_label_changed, xaml_object, xaml_string)
+    XAML_PROP_STRING_EVENT_IMPL(y_scale_label)
 
-    XAML_EVENT_IMPL(yScaleRange_changed, xaml_object, xaml_string)
-    XAML_PROP_STRING_EVENT_IMPL(yScaleRange)
+    XAML_EVENT_IMPL(y_scale_range_changed, xaml_object, xaml_string)
+    XAML_PROP_STRING_EVENT_IMPL(y_scale_range)
 
-    XAML_EVENT_IMPL(curveColor_changed, xaml_object, xaml_string)
-    XAML_PROP_STRING_EVENT_IMPL(curveColor)
+    XAML_EVENT_IMPL(curve_color_changed, xaml_object, xaml_string)
+    XAML_PROP_STRING_EVENT_IMPL(curve_color)
 
-    XAML_EVENT_IMPL(curveTitle_changed, xaml_object, xaml_string)
-    XAML_PROP_STRING_EVENT_IMPL(curveTitle)
+    XAML_EVENT_IMPL(curve_title_changed, xaml_object, xaml_string)
+    XAML_PROP_STRING_EVENT_IMPL(curve_title)
 
-    XAML_EVENT_IMPL(curveData_changed, xaml_object, xaml_string)
-    XAML_PROP_STRING_EVENT_IMPL(curveData)
+    XAML_EVENT_IMPL(curve_data_changed, xaml_object, xaml_string)
+    XAML_PROP_STRING_EVENT_IMPL(curve_data)
 
     xaml_result XAML_CALL get_reset(bool * value) noexcept
     {
@@ -56,26 +56,26 @@ struct xaml_diagram_internal : xaml_control_internal
 
 struct xaml_diagram_impl : xaml_control_implement<xaml_diagram_impl, xaml_diagram_internal, xaml_diagram>
 {
-    XAML_EVENT_INTERNAL_IMPL(xScaleLabel_changed, xaml_object, xaml_string)
-    XAML_PROP_PTR_INTERNAL_IMPL(xScaleLabel, xaml_string)
+    XAML_EVENT_INTERNAL_IMPL(x_scale_label_changed, xaml_object, xaml_string)
+    XAML_PROP_PTR_INTERNAL_IMPL(x_scale_label, xaml_string)
 
-    XAML_EVENT_INTERNAL_IMPL(xScaleRange_changed, xaml_object, xaml_string)
-    XAML_PROP_PTR_INTERNAL_IMPL(xScaleRange, xaml_string)
+    XAML_EVENT_INTERNAL_IMPL(x_scale_range_changed, xaml_object, xaml_string)
+    XAML_PROP_PTR_INTERNAL_IMPL(x_scale_range, xaml_string)
 
-    XAML_EVENT_INTERNAL_IMPL(yScaleLabel_changed, xaml_object, xaml_string)
-    XAML_PROP_PTR_INTERNAL_IMPL(yScaleLabel, xaml_string)
+    XAML_EVENT_INTERNAL_IMPL(y_scale_label_changed, xaml_object, xaml_string)
+    XAML_PROP_PTR_INTERNAL_IMPL(y_scale_label, xaml_string)
 
-    XAML_EVENT_INTERNAL_IMPL(yScaleRange_changed, xaml_object, xaml_string)
-    XAML_PROP_PTR_INTERNAL_IMPL(yScaleRange, xaml_string)
+    XAML_EVENT_INTERNAL_IMPL(y_scale_range_changed, xaml_object, xaml_string)
+    XAML_PROP_PTR_INTERNAL_IMPL(y_scale_range, xaml_string)
 
-    XAML_EVENT_INTERNAL_IMPL(curveColor_changed, xaml_object, xaml_string)
-    XAML_PROP_PTR_INTERNAL_IMPL(curveColor, xaml_string)
+    XAML_EVENT_INTERNAL_IMPL(curve_color_changed, xaml_object, xaml_string)
+    XAML_PROP_PTR_INTERNAL_IMPL(curve_color, xaml_string)
 
-    XAML_EVENT_INTERNAL_IMPL(curveTitle_changed, xaml_object, xaml_string)
-    XAML_PROP_PTR_INTERNAL_IMPL(curveTitle, xaml_string)
+    XAML_EVENT_INTERNAL_IMPL(curve_title_changed, xaml_object, xaml_string)
+    XAML_PROP_PTR_INTERNAL_IMPL(curve_title, xaml_string)
 
-    XAML_EVENT_INTERNAL_IMPL(curveData_changed, xaml_object, xaml_string)
-    XAML_PROP_PTR_INTERNAL_IMPL(curveData, xaml_string)
+    XAML_EVENT_INTERNAL_IMPL(curve_data_changed, xaml_object, xaml_string)
+    XAML_PROP_PTR_INTERNAL_IMPL(curve_data, xaml_string)
 
     XAML_PROP_INTERNAL_IMPL(reset, bool *, bool)
 };

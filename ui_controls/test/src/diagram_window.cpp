@@ -55,7 +55,7 @@ xaml_result ResetColor(xaml_diagram * diagram, const std::string & curveName)
 
     xaml_ptr<xaml_string> colorData;
     XAML_RETURN_IF_FAILED(xaml_string_new(stream.str(), &colorData));
-    return diagram->set_curveColor(colorData);
+    return diagram->set_curve_color(colorData);
 }
 
 xaml_result ResetTitle(xaml_diagram * diagram, const std::string & curveName)
@@ -66,7 +66,7 @@ xaml_result ResetTitle(xaml_diagram * diagram, const std::string & curveName)
 
     xaml_ptr<xaml_string> titleData;
     XAML_RETURN_IF_FAILED(xaml_string_new(stream.str(), &titleData));
-    return diagram->set_curveTitle(titleData);
+    return diagram->set_curve_title(titleData);
 }
 
 xaml_result ResetMinMax(xaml_diagram * diagram)
@@ -82,8 +82,8 @@ xaml_result ResetMinMax(xaml_diagram * diagram)
 
     xaml_ptr<xaml_string> range;
     XAML_RETURN_IF_FAILED(xaml_string_new(stream.str(), &range));
-    XAML_RETURN_IF_FAILED(diagram->set_xScaleRange(range));
-    return diagram->set_yScaleRange(range);
+    XAML_RETURN_IF_FAILED(diagram->set_x_scale_range(range));
+    return diagram->set_y_scale_range(range);
 }
 
 xaml_result CreateCurveData(xaml_diagram * diagram, const std::string & curveName)
@@ -95,9 +95,9 @@ xaml_result CreateCurveData(xaml_diagram * diagram, const std::string & curveNam
     for (int i = 0; i < 10; ++i) {
         stream << DIAGRAM_COMMAND_SEPARATOR << (dist(g_generator) - g_max);
     }
-    xaml_ptr<xaml_string> curveData;
-    XAML_RETURN_IF_FAILED(xaml_string_new(stream.str(), &curveData));
-    return diagram->set_curveData(curveData);
+    xaml_ptr<xaml_string> curve_data;
+    XAML_RETURN_IF_FAILED(xaml_string_new(stream.str(), &curve_data));
+    return diagram->set_curve_data(curve_data);
 }
 
 xaml_result xaml_test_window_impl::init() noexcept
@@ -124,9 +124,9 @@ xaml_result xaml_test_window_impl::init() noexcept
     XAML_RETURN_IF_FAILED(xaml_diagram_new(&diagram));
     xaml_ptr<xaml_string> labelText;
     XAML_RETURN_IF_FAILED(xaml_string_new(U("X Label long long header"), &labelText));
-    XAML_RETURN_IF_FAILED(diagram->set_xScaleLabel(labelText));
+    XAML_RETURN_IF_FAILED(diagram->set_x_scale_label(labelText));
     XAML_RETURN_IF_FAILED(xaml_string_new(U("Y Label short header without extrawords"), labelText.put()));
-    XAML_RETURN_IF_FAILED(diagram->set_yScaleLabel(labelText));
+    XAML_RETURN_IF_FAILED(diagram->set_y_scale_label(labelText));
     XAML_RETURN_IF_FAILED(g->add_child(diagram));
     XAML_RETURN_IF_FAILED(xaml_grid_set_column(diagram, 0));
     XAML_RETURN_IF_FAILED(xaml_grid_set_row(diagram, 0));

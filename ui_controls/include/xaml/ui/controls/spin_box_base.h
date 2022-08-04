@@ -15,8 +15,8 @@ XAML_CLASS(xaml_spin_box_base, {0xf007e0ca, 0x1e2f, 0x4588, {0xbf, 0xde, 0x1c, 0
     XAML_EVENT(max_changed, type, xaml_object, xaml_string);                                                                                                   \
     XAML_PROP(step, type, xaml_string **, xaml_string *);                                                                                                      \
     XAML_EVENT(step_changed, type, xaml_object, xaml_string);                                                                                                  \
-    XAML_PROP(topHeader, type, xaml_string **, xaml_string *);                                                                                                 \
-    XAML_EVENT(topHeader_changed, type, xaml_object, xaml_string)
+    XAML_PROP(top_header, type, xaml_string **, xaml_string *);                                                                                                \
+    XAML_EVENT(top_header_changed, type, xaml_object, xaml_string)
 
 XAML_DECL_INTERFACE_(xaml_spin_box_base, xaml_control)
 {

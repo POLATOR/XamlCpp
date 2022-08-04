@@ -20,7 +20,7 @@ xaml_result xaml_diagram_internal::setXLabel() noexcept
 {
     if (auto plot = qobject_cast<DiagramControl *>(m_handle)) {
         QString label;
-        XAML_RETURN_IF_FAILED(to_QString(m_xScaleLabel, &label));
+        XAML_RETURN_IF_FAILED(to_QString(m_x_scale_label, &label));
         plot->setAxisTitle(QwtAxis::XBottom, label);
     }
     return XAML_S_OK;
@@ -30,7 +30,7 @@ xaml_result xaml_diagram_internal::setXRange() noexcept
 {
     if (auto plot = qobject_cast<DiagramControl *>(m_handle)) {
         QString scaleData;
-        XAML_RETURN_IF_FAILED(to_QString(m_xScaleRange, &scaleData));
+        XAML_RETURN_IF_FAILED(to_QString(m_x_scale_range, &scaleData));
         plot->setAxisScale(QwtAxis::XBottom, scaleData);
     }
     return XAML_S_OK;
@@ -40,7 +40,7 @@ xaml_result xaml_diagram_internal::setYLabel() noexcept
 {
     if (auto plot = qobject_cast<DiagramControl *>(m_handle)) {
         QString label;
-        XAML_RETURN_IF_FAILED(to_QString(m_yScaleLabel, &label));
+        XAML_RETURN_IF_FAILED(to_QString(m_y_scale_label, &label));
         plot->setAxisTitle(QwtAxis::YLeft, label);
     }
     return XAML_S_OK;
@@ -50,7 +50,7 @@ xaml_result xaml_diagram_internal::setYRange() noexcept
 {
     if (auto plot = qobject_cast<DiagramControl *>(m_handle)) {
         QString scaleData;
-        XAML_RETURN_IF_FAILED(to_QString(m_yScaleRange, &scaleData));
+        XAML_RETURN_IF_FAILED(to_QString(m_y_scale_range, &scaleData));
         plot->setAxisScale(QwtAxis::YLeft, scaleData);
     }
     return XAML_S_OK;
@@ -60,7 +60,7 @@ xaml_result xaml_diagram_internal::setCurveColor() noexcept
 {
     if (auto plot = qobject_cast<DiagramControl *>(m_handle)) {
         QString colorData;
-        XAML_RETURN_IF_FAILED(to_QString(m_curveColor, &colorData));
+        XAML_RETURN_IF_FAILED(to_QString(m_curve_color, &colorData));
         plot->setCurveColor(colorData);
     }
     return XAML_S_OK;
@@ -70,7 +70,7 @@ xaml_result xaml_diagram_internal::setCurveTitle() noexcept
 {
     if (auto plot = qobject_cast<DiagramControl *>(m_handle)) {
         QString titleData;
-        XAML_RETURN_IF_FAILED(to_QString(m_curveTitle, &titleData));
+        XAML_RETURN_IF_FAILED(to_QString(m_curve_title, &titleData));
         plot->setCurveTitle(titleData);
     }
     return XAML_S_OK;
@@ -79,9 +79,9 @@ xaml_result xaml_diagram_internal::setCurveTitle() noexcept
 xaml_result XAML_CALL xaml_diagram_internal::addCurveData() noexcept
 {
     if (auto plot = dynamic_cast<DiagramControl *>(m_handle)) {
-        QString curveDataData;
-        XAML_RETURN_IF_FAILED(to_QString(m_curveData, &curveDataData));
-        plot->addSeries(curveDataData);
+        QString curve_dataData;
+        XAML_RETURN_IF_FAILED(to_QString(m_curve_data, &curve_dataData));
+        plot->addSeries(curve_dataData);
     }
     return XAML_S_OK;
 }

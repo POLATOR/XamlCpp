@@ -18,7 +18,7 @@ xaml_result xaml_entry_internal::draw(xaml_rectangle const & region) noexcept
         XAML_RETURN_IF_FAILED(draw_visible());
         XAML_RETURN_IF_FAILED(draw_text());
         XAML_RETURN_IF_FAILED(draw_alignment());
-        XAML_RETURN_IF_FAILED(draw_topHeader());
+        XAML_RETURN_IF_FAILED(draw_top_header());
     }
     return set_rect(region);
 }
@@ -33,11 +33,11 @@ xaml_result xaml_entry_internal::draw_text() noexcept
     return XAML_S_OK;
 }
 
-xaml_result xaml_entry_internal::draw_topHeader() noexcept
+xaml_result xaml_entry_internal::draw_top_header() noexcept
 {
     if (auto edit = dynamic_cast<XLineEdit *>(m_handle)) {
         QString text;
-        XAML_RETURN_IF_FAILED(to_QString(m_topHeader, &text));
+        XAML_RETURN_IF_FAILED(to_QString(m_top_header, &text));
         edit->setHeader(text);
     }
     return XAML_S_OK;

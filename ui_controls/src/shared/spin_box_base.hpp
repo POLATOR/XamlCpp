@@ -12,8 +12,8 @@ struct xaml_spin_box_base_internal : xaml_control_internal
     XAML_EVENT_IMPL(value_changed, xaml_object, xaml_string)
     XAML_PROP_STRING_EVENT_IMPL(value)
 
-    XAML_EVENT_IMPL(topHeader_changed, xaml_object, xaml_string)
-    XAML_PROP_STRING_EVENT_IMPL(topHeader)
+    XAML_EVENT_IMPL(top_header_changed, xaml_object, xaml_string)
+    XAML_PROP_STRING_EVENT_IMPL(top_header)
 
     XAML_EVENT_IMPL(min_changed, xaml_object, xaml_string)
     XAML_PROP_STRING_EVENT_IMPL(min)
@@ -28,7 +28,7 @@ struct xaml_spin_box_base_internal : xaml_control_internal
     virtual xaml_result XAML_CALL draw_min() noexcept = 0;
     virtual xaml_result XAML_CALL draw_max() noexcept = 0;
     virtual xaml_result XAML_CALL draw_step() noexcept = 0;
-    virtual xaml_result XAML_CALL draw_topHeader() noexcept = 0;
+    virtual xaml_result XAML_CALL draw_top_header() noexcept = 0;
 
 #ifdef XAML_UI_WINDOWS
     xaml_result XAML_CALL size_to_fit() noexcept override;
@@ -53,8 +53,8 @@ struct xaml_spin_box_base_implement : xaml_control_implement<T, Internal, Base>
     XAML_EVENT_INTERNAL_IMPL(value_changed, xaml_object, xaml_string)
     XAML_PROP_PTR_INTERNAL_IMPL(value, xaml_string)
 
-    XAML_EVENT_INTERNAL_IMPL(topHeader_changed, xaml_object, xaml_string)
-    XAML_PROP_PTR_INTERNAL_IMPL(topHeader, xaml_string)
+    XAML_EVENT_INTERNAL_IMPL(top_header_changed, xaml_object, xaml_string)
+    XAML_PROP_PTR_INTERNAL_IMPL(top_header, xaml_string)
 
     XAML_EVENT_INTERNAL_IMPL(min_changed, xaml_object, xaml_string)
     XAML_PROP_PTR_INTERNAL_IMPL(min, xaml_string)

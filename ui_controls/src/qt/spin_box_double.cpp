@@ -48,7 +48,7 @@ xaml_result xaml_spin_box_double_internal::draw(xaml_rectangle const & region) n
         XAML_RETURN_IF_FAILED(draw_max());
         XAML_RETURN_IF_FAILED(draw_step());
         XAML_RETURN_IF_FAILED(draw_value());
-        XAML_RETURN_IF_FAILED(draw_topHeader());
+        XAML_RETURN_IF_FAILED(draw_top_header());
         QObject::connect(edit, &QDoubleSpinBox::textChanged,
                          xaml_mem_fn(&xaml_spin_box_base_internal::on_value_changed_event, static_cast<xaml_spin_box_base_internal *>(this)));
     }
@@ -72,11 +72,11 @@ xaml_result xaml_spin_box_double_internal::draw_value() noexcept
     return XAML_S_OK;
 }
 
-xaml_result xaml_spin_box_double_internal::draw_topHeader() noexcept
+xaml_result xaml_spin_box_double_internal::draw_top_header() noexcept
 {
     if (auto edit = dynamic_cast<XDoubleSpinBox *>(m_handle)) {
         QString text;
-        XAML_RETURN_IF_FAILED(to_QString(m_topHeader, &text));
+        XAML_RETURN_IF_FAILED(to_QString(m_top_header, &text));
         edit->setHeader(text);
     }
     return XAML_S_OK;

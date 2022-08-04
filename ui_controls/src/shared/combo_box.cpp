@@ -20,11 +20,11 @@ xaml_result xaml_combo_box_internal::init() noexcept
         },
         &token)));
 
-    XAML_RETURN_IF_FAILED(xaml_event_new(&m_topHeader_changed));
-    XAML_RETURN_IF_FAILED((m_topHeader_changed->add(
+    XAML_RETURN_IF_FAILED(xaml_event_new(&m_top_header_changed));
+    XAML_RETURN_IF_FAILED((m_top_header_changed->add(
         [this](xaml_object *, xaml_string *) noexcept -> xaml_result {
             if (m_handle) {
-                XAML_RETURN_IF_FAILED(draw_topHeader());
+                XAML_RETURN_IF_FAILED(draw_top_header());
                 XAML_RETURN_IF_FAILED(parent_redraw());
             }
             return XAML_S_OK;
@@ -45,7 +45,7 @@ xaml_result XAML_CALL xaml_combo_box_members(xaml_type_info_registration * __inf
     XAML_RETURN_IF_FAILED(xaml_items_base_members(__info));
     XAML_TYPE_INFO_ADD_CTOR(xaml_combo_box_new);
     XAML_TYPE_INFO_ADD_PROP_EVENT(text, xaml_string);
-    XAML_TYPE_INFO_ADD_PROP_EVENT(topHeader, xaml_string);
+    XAML_TYPE_INFO_ADD_PROP_EVENT(top_header, xaml_string);
     XAML_TYPE_INFO_ADD_PROP_EVENT(is_editable, bool);
     XAML_TYPE_INFO_ADD_DEF_PROP(text);
     return XAML_S_OK;
