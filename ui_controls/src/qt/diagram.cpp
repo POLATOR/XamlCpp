@@ -1,5 +1,5 @@
 #include <qt/qstring.hpp>
-#include <qt/diagram-control.h>
+#include <qt/diagram_control.h>
 #include <shared/diagram.hpp>
 
 xaml_result xaml_diagram_internal::draw(xaml_rectangle const & region) noexcept

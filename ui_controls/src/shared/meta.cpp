@@ -11,6 +11,9 @@
 #include <xaml/ui/controls/progress.h>
 #include <xaml/ui/controls/radio_box.h>
 #include <xaml/ui/controls/stack_panel.h>
+#include <xaml/ui/controls/spin_box_base.h>
+#include <xaml/ui/controls/spin_box_double.h>
+#include <xaml/ui/controls/spin_box_int.h>
 #include <xaml/ui/controls/text_box.h>
 #include <xaml/ui/controls/uniform_grid.h>
 
@@ -18,18 +21,18 @@ struct xaml_module_info_impl : xaml_implement<xaml_module_info_impl, xaml_module
 {
     xaml_ptr<xaml_vector<xaml_string>> m_dependencies;
 
-    xaml_result XAML_CALL get_version(xaml_version* pver) noexcept override
+    xaml_result XAML_CALL get_version(xaml_version * pver) noexcept override
     {
         *pver = xaml_version_current;
         return XAML_S_OK;
     }
 
-    xaml_result XAML_CALL get_dependencies(xaml_vector_view<xaml_string>** ptr) noexcept override
+    xaml_result XAML_CALL get_dependencies(xaml_vector_view<xaml_string> ** ptr) noexcept override
     {
         return m_dependencies->query(ptr);
     }
 
-    xaml_result XAML_CALL register_types(xaml_meta_context* ctx) noexcept override
+    xaml_result XAML_CALL register_types(xaml_meta_context * ctx) noexcept override
     {
         XAML_RETURN_IF_FAILED(xaml_layout_base_register(ctx));
         XAML_RETURN_IF_FAILED(xaml_grid_register(ctx));
@@ -52,6 +55,9 @@ struct xaml_module_info_impl : xaml_implement<xaml_module_info_impl, xaml_module
         XAML_RETURN_IF_FAILED(xaml_orientation_register(ctx));
         XAML_RETURN_IF_FAILED(xaml_grid_layout_register(ctx));
         XAML_RETURN_IF_FAILED(xaml_diagram_register(ctx));
+        XAML_RETURN_IF_FAILED(xaml_spin_box_base_register(ctx));
+        XAML_RETURN_IF_FAILED(xaml_spin_box_double_register(ctx));
+        XAML_RETURN_IF_FAILED(xaml_spin_box_int_register(ctx));
         XAML_META_CONTEXT_ADD_BASIC_TYPE(xaml_grid_length);
         return XAML_S_OK;
     }
@@ -68,7 +74,7 @@ struct xaml_module_info_impl : xaml_implement<xaml_module_info_impl, xaml_module
     }
 };
 
-EXTERN_C XAML_UI_CONTROLS_API xaml_result XAML_CALL xaml_module_get_info(xaml_module_info** ptr) noexcept
+EXTERN_C XAML_UI_CONTROLS_API xaml_result XAML_CALL xaml_module_get_info(xaml_module_info ** ptr) noexcept
 {
     return xaml_object_init<xaml_module_info_impl>(ptr);
 }
