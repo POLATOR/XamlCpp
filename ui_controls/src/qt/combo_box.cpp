@@ -41,19 +41,34 @@ xaml_result xaml_combo_box_internal::draw_text() noexcept
 
 xaml_result xaml_combo_box_internal::draw_items() noexcept
 {
-    if (auto combo = qobject_cast<QComboBox *>(m_handle); combo && m_items) {
+    if (auto combo = qobject_cast<QComboBox *>(m_handle)) {
         QStringList list;
-        XAML_FOREACH_START(xaml_object, item, m_items);
-        {
-            XAML_RETURN_IF_FAILED(create_item(item));
-            xaml_ptr<xaml_string> s = item.query<xaml_string>();
-            if (s) {
-                QString ss;
-                XAML_RETURN_IF_FAILED(to_QString(s, &ss));
-                list.append(std::move(ss));
+        if (m_items) {
+            XAML_FOREACH_START(xaml_object, item, m_items);
+            {
+                XAML_RETURN_IF_FAILED(create_item(item));
+                xaml_ptr<xaml_string> s = item.query<xaml_string>();
+                if (s) {
+                    QString ss;
+                    XAML_RETURN_IF_FAILED(to_QString(s, &ss));
+                    list.append(std::move(ss));
+                }
             }
+            XAML_FOREACH_END();
         }
-        XAML_FOREACH_END();
+        else if (m_text_items) {
+            XAML_FOREACH_START(xaml_combo_box_item, item, m_text_items);
+            {
+                xaml_ptr<xaml_string> s;
+                XAML_RETURN_IF_FAILED(item->get_text(&s));
+                if (s) {
+                    QString ss;
+                    XAML_RETURN_IF_FAILED(to_QString(s, &ss));
+                    list.append(std::move(ss));
+                }
+            }
+            XAML_FOREACH_END();
+        }
         combo->clear();
         combo->addItems(list);
     }

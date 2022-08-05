@@ -48,6 +48,7 @@ struct xaml_module_info_impl : xaml_implement<xaml_module_info_impl, xaml_module
         XAML_RETURN_IF_FAILED(xaml_text_box_register(ctx));
         XAML_RETURN_IF_FAILED(xaml_items_base_register(ctx));
         XAML_RETURN_IF_FAILED(xaml_combo_box_register(ctx));
+        XAML_RETURN_IF_FAILED(xaml_combo_box_item_register(ctx));
         XAML_RETURN_IF_FAILED(xaml_menu_item_register(ctx));
         XAML_RETURN_IF_FAILED(xaml_popup_menu_item_register(ctx));
         XAML_RETURN_IF_FAILED(xaml_check_menu_item_register(ctx));

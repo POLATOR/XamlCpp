@@ -2,50 +2,47 @@
              xmlns:x="https://polator.ru/schemas/vpl-1/xaml/"
              xmlns:test="https://polator.ru/schemas/vpl-1/parser/test/"
              title="Test Window" location="200, 100" size="800, 600">
-  <test:window.resources>
-    <test:converter x:key="conv"/>
-  </test:window.resources>
-  <test:window.model>
-  <test:model x:name="model" text="&#x1f923;" curve_data=""/>
-  </test:window.model>
-  <grid margin="10" columns="1*, 1*, 0.8*" rows="auto, auto, 0.5*, 0.8*,auto">
-    <diagram x:name="plot" x_scale_label="X Label" y_scale_label="Y Label" curve_data="{binding curve_data,element=model,mode=one_way}"/>
-    <entry grid.column="1" margin="0, 5" valignment="center">John</entry>
-    <label grid.row="1" margin="10" text_halignment="right" valignment="center">Password:</label>
-    <password_entry grid.column="1" grid.row="1" margin="0, 5" valignment="center">123456</password_entry>
-    <stack_panel grid.column="2" grid.row="0" grid.row_span="3" margin="5" orientation="vertical">
-      <radio_box margin="5, 0" group="a">Radio 1</radio_box>
-      <radio_box margin="5, 0" group="a" is_checked="true">Radio 2</radio_box>
-      <radio_box margin="5, 0" group="a">Radio 3</radio_box>
-      <radio_box margin="5, 0" group="b" is_checked="true">Radio 4 in group b</radio_box>
-      <radio_box margin="5, 0" group="b">Radio 5 in group b</radio_box>
-    </stack_panel>
-    <label x:name="mylabel" grid.column="0" grid.row="2" margin="5, 0" text_halignment="center" valignment="center" text="{binding text,element=model,mode=one_way,converter={dynamic_resource conv}}"/>
-    <button x:name="mybutton" grid.column="1" grid.row="2" is_default="true" valignment="center" click="on_button_click" text="{binding text,element=model,mode=one_way}"/>
-    <label grid.column="2" grid.row="2" margin="5,0" text_halignment="center" valignment="center">
-      <platform>
-        <platform_on platform="windows" value="Welcome to Windows!"/>
-        <platform_on platform="gtk3" value="Welcome to GTK3!"/>
-        <platform_on platform="qt5" value="Welcome to QT5!"/>
-        <platform_on platform="cocoa" value="Welcome to Cocoa!"/>
-      </platform>
-    </label>
-    <canvas grid.column="0" grid.row="3" margin="10" redraw="on_canvas_redraw"/>
-    <uniform_grid grid.column="1" grid.row="3" margin="5" valignment="top">
-      <check_box margin="5">Check 1</check_box>
-      <check_box margin="5">Check 2</check_box>
-      <check_box margin="5">Check 3</check_box>
-      <check_box margin="5">Check 4</check_box>
-      <check_box margin="5">Check 5</check_box>
-    </uniform_grid>
-    <combo_box grid.column="2" grid.row="3" margin="5" halignment="center" valignment="top" items="{binding items,element=model}">
-      <combo_box.items_template>
-        <data_template converter_parameter="Prefix: ">
-          <data_template.converter>
-            <test:converter/>
-          </data_template.converter>
-        </data_template>
-      </combo_box.items_template>
-    </combo_box>
-  </grid>
+    <test:window.resources>
+        <test:converter x:key="conv"/>
+    </test:window.resources>
+    <test:window.model>
+        <test:model x:name="model" text="&#x1f923;" curve_data=""/>
+    </test:window.model>
+    <grid margin="10" columns="1*, 1*, 0.8*" rows="auto, auto, 0.5*, 0.8*,auto">
+        <diagram x:name="plot" x_scale_label="X Label" y_scale_label="Y Label" curve_data="{binding curve_data,element=model,mode=one_way}"/>
+        <entry grid.column="1" margin="0, 5" valignment="center">John</entry>
+        <label grid.row="1" margin="10" text_halignment="right" valignment="center">Password:</label>
+        <password_entry grid.column="1" grid.row="1" margin="0, 5" valignment="center">123456</password_entry>
+        <stack_panel grid.column="2" grid.row="0" grid.row_span="3" margin="5" orientation="vertical">
+            <radio_box margin="5, 0" group="a">Radio 1</radio_box>
+            <radio_box margin="5, 0" group="a" is_checked="true">Radio 2</radio_box>
+            <radio_box margin="5, 0" group="a">Radio 3</radio_box>
+            <radio_box margin="5, 0" group="b" is_checked="true">Radio 4 in group b</radio_box>
+            <radio_box margin="5, 0" group="b">Radio 5 in group b</radio_box>
+        </stack_panel>
+        <label x:name="mylabel" grid.column="0" grid.row="2" margin="5, 0" text_halignment="center" valignment="center" text="{binding text,element=model,mode=one_way,converter={dynamic_resource conv}}"/>
+        <button x:name="mybutton" grid.column="1" grid.row="2" is_default="true" valignment="center" click="on_button_click" text="{binding text,element=model,mode=one_way}"/>
+        <label grid.column="2" grid.row="2" margin="5,0" text_halignment="center" valignment="center">
+            <platform>
+                <platform_on platform="windows" value="Welcome to Windows!"/>
+                <platform_on platform="gtk3" value="Welcome to GTK3!"/>
+                <platform_on platform="qt5" value="Welcome to QT5!"/>
+                <platform_on platform="cocoa" value="Welcome to Cocoa!"/>
+            </platform>
+        </label>
+        <canvas grid.column="0" grid.row="3" margin="10" redraw="on_canvas_redraw"/>
+        <uniform_grid grid.column="1" grid.row="3" margin="5" valignment="top">
+            <check_box margin="5">Check 1</check_box>
+            <check_box margin="5">Check 2</check_box>
+            <check_box margin="5">Check 3</check_box>
+            <spin_box_int min="1" max="200" top_header="Int value">100</spin_box_int>
+            <spin_box_double min="0.0" max="10.0" step="0.1" top_header="Double value">3.14</spin_box_double>
+        </uniform_grid>
+        <combo_box grid.column="2" grid.row="3" margin="5" halignment="center" valignment="top">
+            <combo_box_item text="Item1"/>
+            <combo_box_item text="Item2"/>
+            <combo_box_item>Item3</combo_box_item>
+            <combo_box_item>Item4</combo_box_item>
+        </combo_box>
+    </grid>
 </test:window>
