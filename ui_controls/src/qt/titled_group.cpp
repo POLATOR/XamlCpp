@@ -4,54 +4,8 @@
 #include <QVBoxLayout>
 
 #include <qt/qstring.hpp>
+#include <qt/titled_group_control.h>
 #include <shared/titled_group.hpp>
-
-class TitledGroup : public QWidget
-{
-public:
-    explicit TitledGroup(xaml_titled_group_internal * internal, QWidget * parent = nullptr)
-        : QWidget(parent)
-        , m_internal(internal)
-    {
-        m_header = new QLabel(this);
-        m_header->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-        setStyleSheet("border: 1px solid #8C8C8C;");
-        m_header->setFixedHeight(40);
-    }
-
-    Qt::Alignment headerAlignment() const
-    {
-        return m_header->alignment();
-    }
-    void setHeaderAlignment(Qt::Alignment alignment)
-    {
-        m_header->setAlignment(alignment | Qt::AlignVCenter);
-    }
-
-    QString headerText() const
-    {
-        return m_header->text();
-    }
-    void setHeaderText(const QString & headerText)
-    {
-        m_header->setText(headerText);
-    }
-
-protected:
-    void resizeEvent(QResizeEvent * event) override
-    {
-        QWidget::resizeEvent(event);
-        m_internal->on_resize_event(event);
-        auto sz = m_header->size();
-        sz.setWidth(event->size().width());
-        m_header->resize(sz);
-    }
-
-private:
-    xaml_titled_group_internal * m_internal = nullptr;
-    QLabel * m_header = nullptr;
-    QFrame * m_bottom = nullptr;
-};
 
 xaml_result xaml_titled_group_internal::draw(xaml_rectangle const & region) noexcept
 {

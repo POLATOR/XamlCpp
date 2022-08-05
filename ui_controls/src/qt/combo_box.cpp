@@ -6,7 +6,12 @@
 
 using namespace std;
 
-using XComboBox = TopHeader<QComboBox, QStyleOptionComboBox>;
+class XComboBox : public TopHeader<QComboBox, QStyleOptionComboBox>
+{
+public:
+    using Base = TopHeader<QComboBox, QStyleOptionComboBox>;
+    using Base::Base;
+};
 
 xaml_result xaml_combo_box_internal::draw(xaml_rectangle const & region) noexcept
 {

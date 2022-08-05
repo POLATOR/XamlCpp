@@ -9,7 +9,12 @@
 
 using namespace std;
 
-using XDoubleSpinBox = TopHeader<QDoubleSpinBox, QStyleOptionSpinBox>;
+class XDoubleSpinBox : public TopHeader<QDoubleSpinBox, QStyleOptionSpinBox>
+{
+public:
+    using Base = TopHeader<QDoubleSpinBox, QStyleOptionSpinBox>;
+    using Base::Base;
+};
 
 namespace {
 

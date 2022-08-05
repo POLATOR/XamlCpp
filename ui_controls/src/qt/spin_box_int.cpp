@@ -8,7 +8,12 @@
 
 using namespace std;
 
-using XSpinBox = TopHeader<QSpinBox, QStyleOptionSpinBox>;
+class XSpinBox : public TopHeader<QSpinBox, QStyleOptionSpinBox>
+{
+public:
+    using Base = TopHeader<QSpinBox, QStyleOptionSpinBox>;
+    using Base::Base;
+};
 
 xaml_result xaml_spin_box_int_internal::draw(xaml_rectangle const & region) noexcept
 {

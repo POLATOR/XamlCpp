@@ -70,7 +70,6 @@ private:
     {
         m_headerFont = this->font();
         m_headerFont.setPointSizeF(m_headerFont.pointSizeF() * c_headerToTextRatio);
-        this->setStyleSheet(QString("margin-top: %1px;").arg(QFontMetrics(m_headerFont).height() / 2));
     }
 
     QFont m_headerFont;

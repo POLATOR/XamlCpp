@@ -7,7 +7,12 @@
 
 using namespace std;
 
-using XLineEdit = TopHeader<QLineEdit, QStyleOptionFrame>;
+class XLineEdit : public TopHeader<QLineEdit, QStyleOptionFrame>
+{
+public:
+    using Base = TopHeader<QLineEdit, QStyleOptionFrame>;
+    using Base::Base;
+};
 
 xaml_result xaml_entry_internal::draw(xaml_rectangle const & region) noexcept
 {
