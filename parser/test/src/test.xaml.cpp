@@ -7,6 +7,7 @@
 #include <xaml/resource/resource.h>
 #include <xaml/ui/application.h>
 #include <xaml/ui/msgbox.h>
+#include <xaml/ui/controls/diagram.h>
 
 #include <random>
 #include <sstream>
@@ -19,15 +20,13 @@ namespace {
 
 xaml_result CreateCurve(xaml_test_model * model, const std::string & curveName)
 {
-    constexpr char SEPARTOR = '\b';
-
     std::mt19937 generator{std::random_device{}()};
     std::uniform_real_distribution<> dist(0.0, 1000.0);
 
     std::stringstream stream;
     stream << curveName;
     for (int i = 0; i < 100; ++i) {
-        stream << SEPARTOR << dist(generator);
+        stream << DIAGRAM_COMMAND_SEPARATOR << dist(generator);
     }
     xaml_ptr<xaml_string> curve_data;
     XAML_RETURN_IF_FAILED(xaml_string_new(stream.str(), &curve_data));

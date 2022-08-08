@@ -21,7 +21,7 @@
             <radio_box margin="5, 0" group="b">Radio 5 in group b</radio_box>
         </stack_panel>
         <label x:name="mylabel" grid.column="0" grid.row="2" margin="5, 0" text_halignment="center" valignment="center" text="{binding text,element=model,mode=one_way,converter={dynamic_resource conv}}"/>
-        <button x:name="mybutton" grid.column="1" grid.row="2" is_default="true" valignment="center" click="on_button_click" text="{binding text,element=model,mode=one_way}"/>
+        <button x:name="mybutton" grid.column="1" grid.row="2" is_default="true" valignment="center" pressed="{binding button_pressed,element=model,mode=one_way_to_source}" click="on_button_click" text="{binding text,element=model,mode=one_way}"/>
         <label grid.column="2" grid.row="2" margin="5,0" text_halignment="center" valignment="center">
             <platform>
                 <platform_on platform="windows" value="Welcome to Windows!"/>
@@ -34,7 +34,7 @@
         <uniform_grid grid.column="1" grid.row="3" margin="5" valignment="top">
             <check_box margin="5">Check 1</check_box>
             <check_box margin="5">Check 2</check_box>
-            <check_box margin="5">Check 3</check_box>
+            <check_box margin="5" is_checked="{binding button_pressed,element=model,mode=one_way}">Pressed!!!</check_box>
             <spin_box_int min="1" max="200" top_header="Int value">100</spin_box_int>
             <spin_box_double min="0.0" max="10.0" step="0.1" top_header="Double value">3.14</spin_box_double>
         </uniform_grid>
