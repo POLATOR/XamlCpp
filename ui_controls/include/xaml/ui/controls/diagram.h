@@ -28,7 +28,7 @@ XAML_DECL_INTERFACE_(xaml_diagram, xaml_control)
     XAML_DECL_VTBL(xaml_diagram, XAML_DIAGRAM_VTBL);
 };
 
-const char DIAGRAM_COMMAND_SEPARATOR = '\b';
+constexpr char DIAGRAM_COMMAND_SEPARATOR = ',';
 
 EXTERN_C XAML_UI_CONTROLS_API xaml_result XAML_CALL xaml_diagram_new(xaml_diagram **) XAML_NOEXCEPT;
 EXTERN_C XAML_UI_CONTROLS_API xaml_result XAML_CALL xaml_diagram_members(xaml_type_info_registration *) XAML_NOEXCEPT;
