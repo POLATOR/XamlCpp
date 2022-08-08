@@ -9,7 +9,14 @@
         <test:model x:name="model" text="&#x1f923;" curve_data=""/>
     </test:window.model>
     <grid margin="10" columns="1*, 1*, 0.8*" rows="auto, auto, 0.5*, 0.8*,auto">
-        <diagram x:name="plot" x_scale_label="X Label" y_scale_label="Y Label" curve_data="{binding curve_data,element=model,mode=one_way}"/>
+        <diagram x:name="plot" x_scale_label="X Label" y_scale_label="Y Label" curve_data="{binding curve_data,element=model,mode=one_way}">
+            <diagram_curve id="ID1" color="#FF0000">Title1</diagram_curve>
+            <diagram_curve id="ID2" title="Title2" color="#0000FF"/>
+            <diagram.curve>
+                <diagram_curve id="ID3" color="#00FF00">Title3</diagram_curve>
+                <diagram_curve id="ID4" title="Title4" color="#0F0F00"/>
+            </diagram.curve>
+        </diagram>
         <entry grid.column="1" margin="0, 5" valignment="center">John</entry>
         <label grid.row="1" margin="10" text_halignment="right" valignment="center">Password:</label>
         <password_entry grid.column="1" grid.row="1" margin="0, 5" valignment="center">123456</password_entry>

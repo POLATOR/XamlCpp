@@ -13,11 +13,6 @@ struct xaml_combo_box_item_impl : xaml_weak_implement<xaml_combo_box_item_impl, 
 
 struct xaml_combo_box_internal : xaml_items_base_internal
 {
-    xaml_result XAML_CALL get_text_items(xaml_vector_view<xaml_combo_box_item> ** ptr) noexcept
-    {
-        return m_text_items->query(ptr);
-    }
-
     xaml_result XAML_CALL add_text_item(xaml_combo_box_item *) noexcept;
     xaml_result XAML_CALL remove_text_item(xaml_combo_box_item *) noexcept;
 
@@ -71,7 +66,6 @@ struct xaml_combo_box_impl : xaml_items_base_implement<xaml_combo_box_impl, xaml
     XAML_EVENT_INTERNAL_IMPL(is_editable_changed, xaml_object, bool)
     XAML_PROP_INTERNAL_IMPL(is_editable, bool *, bool)
 
-    XAML_PROP_PTR_INTERNAL_IMPL_BASE(text_items, xaml_vector_view<xaml_combo_box_item>)
     XAML_CPROP_INTERNAL_IMPL(text_item, xaml_combo_box_item *, xaml_combo_box_item *)
 };
 

@@ -9,6 +9,19 @@
 #include <QwtPlotCanvas>
 #include <QwtPlotLegendItem>
 
+namespace {
+
+QStringList ParsePair(const QString & string)
+{
+    auto pos = string.indexOf(DIAGRAM_COMMAND_SEPARATOR);
+    if (pos == -1 || pos == 0) {
+        return {};
+    }
+    return {string.mid(0, pos), string.mid(pos + 1)};
+}
+
+} // namespace
+
 class DiagramControl::DiagramData : public QwtSeriesData<QPointF>
 {
 public:
@@ -102,9 +115,28 @@ DiagramControl::DiagramControl(QWidget * parent)
     replot();
 }
 
-void DiagramControl::addSeries(const QString & curve_dataData)
+void DiagramControl::addCurve(const QString & id, const QString & title, const QString & color)
 {
-    auto data = parseData(curve_dataData);
+    auto found = m_curves.find(id);
+    if (found != m_curves.end()) {
+        return;
+    }
+    auto curve = new QwtPlotCurve();
+    curve->setTitle(title);
+    curve->setRenderHint(QwtPlotItem::RenderAntialiased, true);
+    curve->setData(new DiagramData);
+    curve->setPen(QColor(color));
+    curve->attach(this);
+    auto rv = m_curves.emplace(id, curve);
+    if (!rv.second) {
+        delete curve;
+    }
+    // QMetaObject::invokeMethod(canvas(), "replot", Qt::DirectConnection);
+}
+
+void DiagramControl::addSeries(const QString & curveSeriesData)
+{
+    auto data = curveSeriesData.split(DIAGRAM_COMMAND_SEPARATOR, Qt::SkipEmptyParts);
     auto diagramData = detectDiagramData(data);
     if (!diagramData) {
         return;
@@ -124,7 +156,7 @@ void DiagramControl::resetCurves()
 
 void DiagramControl::setAxisScale(QwtAxisId axisId, const QString & scaleData)
 {
-    auto data = parseData(scaleData);
+    auto data = ParsePair(scaleData);
     if (data.size() != 2) {
         return;
     }
@@ -140,9 +172,9 @@ void DiagramControl::setAxisScale(QwtAxisId axisId, const QString & scaleData)
     }
 }
 
-void DiagramControl::setCurveColor(const QString & curve_colorData)
+void DiagramControl::setCurveColor(const QString & curveColorData)
 {
-    auto data = parseData(curve_colorData);
+    auto data = ParsePair(curveColorData);
     if (data.size() != 2) {
         return;
     }
@@ -154,9 +186,9 @@ void DiagramControl::setCurveColor(const QString & curve_colorData)
     QMetaObject::invokeMethod(canvas(), "replot", Qt::DirectConnection);
 }
 
-void DiagramControl::setCurveTitle(const QString & curve_titleData)
+void DiagramControl::setCurveTitle(const QString & curveTitleData)
 {
-    auto data = parseData(curve_titleData);
+    auto data = ParsePair(curveTitleData);
     if (data.size() != 2) {
         return;
     }
@@ -168,35 +200,19 @@ void DiagramControl::setCurveTitle(const QString & curve_titleData)
     QMetaObject::invokeMethod(canvas(), "replot", Qt::DirectConnection);
 }
 
-QStringList DiagramControl::parseData(const QString & data)
-{
-    // TODO make more smart function?
-    return data.split(DIAGRAM_COMMAND_SEPARATOR, Qt::SkipEmptyParts);
-}
-
-QwtPlotCurve * DiagramControl::detectCurve(const QStringList & data)
+QwtPlotCurve * DiagramControl::detectCurve(const QStringList & data) const
 {
     if (data.isEmpty()) {
         return nullptr;
     }
     auto found = m_curves.find(data.front());
     if (found == m_curves.end()) {
-        auto curve = new QwtPlotCurve();
-        curve->setTitle(data.front());
-        curve->setRenderHint(QwtPlotItem::RenderAntialiased, true);
-        curve->setData(new DiagramData);
-        curve->attach(this);
-        auto rv = m_curves.emplace(data.front(), curve);
-        if (!rv.second) {
-            delete curve;
-            return nullptr;
-        }
-        found = rv.first;
+        return nullptr;
     }
     return found->second;
 }
 
-DiagramControl::DiagramData * DiagramControl::detectDiagramData(const QStringList & data)
+DiagramControl::DiagramData * DiagramControl::detectDiagramData(const QStringList & data) const
 {
     if (data.size() < 3) {
         return nullptr;

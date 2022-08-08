@@ -28,7 +28,6 @@ XAML_CLASS(xaml_combo_box, {0x804bf4c0, 0xff2b, 0x445d, {0x99, 0x83, 0x4b, 0xb2,
     XAML_EVENT(top_header_changed, type, xaml_object, xaml_string);                                                                                            \
     XAML_PROP(is_editable, type, bool *, bool);                                                                                                                \
     XAML_EVENT(is_editable_changed, type, xaml_object, bool);                                                                                                  \
-    XAML_METHOD(get_text_items, type, XAML_VECTOR_VIEW_1_NAME(xaml_combo_box_item) **);                                                                        \
     XAML_CPROP(text_item, type, xaml_combo_box_item *, xaml_combo_box_item *)
 
 XAML_DECL_INTERFACE_(xaml_combo_box, xaml_items_base)

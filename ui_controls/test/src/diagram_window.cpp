@@ -100,6 +100,9 @@ xaml_result CreateCurveData(xaml_diagram * diagram, const std::string & curveNam
     return diagram->set_curve_data(curve_data);
 }
 
+const char * S_ID1 = "ID1";
+const char * S_ID2 = "ID2";
+
 xaml_result xaml_test_window_impl::init() noexcept
 {
     XAML_RETURN_IF_FAILED(xaml_window_new(&m_window));
@@ -127,6 +130,31 @@ xaml_result xaml_test_window_impl::init() noexcept
     XAML_RETURN_IF_FAILED(diagram->set_x_scale_label(labelText));
     XAML_RETURN_IF_FAILED(xaml_string_new(U("Y Label short header without extrawords"), labelText.put()));
     XAML_RETURN_IF_FAILED(diagram->set_y_scale_label(labelText));
+
+    xaml_ptr<xaml_diagram_curve> curve;
+    {
+        XAML_RETURN_IF_FAILED(xaml_diagram_curve_new(&curve));
+        xaml_ptr<xaml_string> text;
+        XAML_RETURN_IF_FAILED(xaml_string_new(S_ID1, &text));
+        XAML_RETURN_IF_FAILED(curve->set_id(text));
+        XAML_RETURN_IF_FAILED(xaml_string_new(U("Title 1"), text.put()));
+        XAML_RETURN_IF_FAILED(curve->set_title(text));
+        XAML_RETURN_IF_FAILED(xaml_string_new(U("#FF0000"), text.put()));
+        XAML_RETURN_IF_FAILED(curve->set_color(text));
+        XAML_RETURN_IF_FAILED(diagram->add_curve(curve));
+    }
+    {
+        XAML_RETURN_IF_FAILED(xaml_diagram_curve_new(curve.put()));
+        xaml_ptr<xaml_string> text;
+        XAML_RETURN_IF_FAILED(xaml_string_new(S_ID2, &text));
+        XAML_RETURN_IF_FAILED(curve->set_id(text));
+        XAML_RETURN_IF_FAILED(xaml_string_new(U("Title 2"), text.put()));
+        XAML_RETURN_IF_FAILED(curve->set_title(text));
+        XAML_RETURN_IF_FAILED(xaml_string_new(U("#0000FF"), text.put()));
+        XAML_RETURN_IF_FAILED(curve->set_color(text));
+        XAML_RETURN_IF_FAILED(diagram->add_curve(curve));
+    }
+
     XAML_RETURN_IF_FAILED(g->add_child(diagram));
     XAML_RETURN_IF_FAILED(xaml_grid_set_column(diagram, 0));
     XAML_RETURN_IF_FAILED(xaml_grid_set_row(diagram, 0));
@@ -175,8 +203,8 @@ xaml_result xaml_test_window_impl::init() noexcept
         xaml_ptr<xaml_delegate<xaml_object, xaml_event_args>> callback;
         XAML_RETURN_IF_FAILED((xaml_delegate_new(
             [diagram](xaml_object *, xaml_event_args *) noexcept -> xaml_result {
-                XAML_RETURN_IF_FAILED(ResetColor(diagram, "Curve #1"));
-                XAML_RETURN_IF_FAILED(ResetColor(diagram, "Curve #2"));
+                XAML_RETURN_IF_FAILED(ResetColor(diagram, S_ID1));
+                XAML_RETURN_IF_FAILED(ResetColor(diagram, S_ID2));
                 return XAML_S_OK;
             },
             &callback)));
@@ -198,8 +226,8 @@ xaml_result xaml_test_window_impl::init() noexcept
         xaml_ptr<xaml_delegate<xaml_object, xaml_event_args>> callback;
         XAML_RETURN_IF_FAILED((xaml_delegate_new(
             [diagram](xaml_object *, xaml_event_args *) noexcept -> xaml_result {
-                XAML_RETURN_IF_FAILED(ResetTitle(diagram, "Curve #1"));
-                XAML_RETURN_IF_FAILED(ResetTitle(diagram, "Curve #2"));
+                XAML_RETURN_IF_FAILED(ResetTitle(diagram, S_ID1));
+                XAML_RETURN_IF_FAILED(ResetTitle(diagram, S_ID2));
                 return XAML_S_OK;
             },
             &callback)));
@@ -221,8 +249,8 @@ xaml_result xaml_test_window_impl::init() noexcept
         xaml_ptr<xaml_delegate<xaml_object, xaml_event_args>> callback;
         XAML_RETURN_IF_FAILED((xaml_delegate_new(
             [diagram](xaml_object *, xaml_event_args *) noexcept -> xaml_result {
-                XAML_RETURN_IF_FAILED(CreateCurveData(diagram, "Curve #1"));
-                XAML_RETURN_IF_FAILED(CreateCurveData(diagram, "Curve #2"));
+                XAML_RETURN_IF_FAILED(CreateCurveData(diagram, S_ID1));
+                XAML_RETURN_IF_FAILED(CreateCurveData(diagram, S_ID2));
                 return XAML_S_OK;
             },
             &callback)));

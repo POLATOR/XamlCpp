@@ -57,6 +57,7 @@ struct xaml_module_info_impl : xaml_implement<xaml_module_info_impl, xaml_module
         XAML_RETURN_IF_FAILED(xaml_orientation_register(ctx));
         XAML_RETURN_IF_FAILED(xaml_grid_layout_register(ctx));
         XAML_RETURN_IF_FAILED(xaml_diagram_register(ctx));
+        XAML_RETURN_IF_FAILED(xaml_diagram_curve_register(ctx));
         XAML_RETURN_IF_FAILED(xaml_spin_box_base_register(ctx));
         XAML_RETURN_IF_FAILED(xaml_spin_box_double_register(ctx));
         XAML_RETURN_IF_FAILED(xaml_spin_box_int_register(ctx));
