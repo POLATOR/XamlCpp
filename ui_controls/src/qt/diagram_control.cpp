@@ -6,7 +6,7 @@
 #include <QwtPlotCurve>
 #include <QwtPlotGrid>
 #include <QwtPlotPanner>
-#include <QwtPlotOpenGLCanvas>
+#include <QwtPlotCanvas>
 #include <QwtPlotLegendItem>
 
 class DiagramControl::DiagramData : public QwtSeriesData<QPointF>
@@ -77,7 +77,7 @@ DiagramControl::DiagramControl(QWidget * parent)
     grid->setPen(QColor("#8C8C8C"));
     grid->attach(this);
 
-    auto plotCanvas = new QwtPlotOpenGLCanvas();
+    auto plotCanvas = new QwtPlotCanvas();
     plotCanvas->setPalette(QColor(QColorConstants::Svg::white));
     plotCanvas->setFrameStyle(QFrame::Box | QFrame::Plain);
     plotCanvas->setLineWidth(1);
