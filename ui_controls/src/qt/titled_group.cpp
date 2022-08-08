@@ -11,12 +11,13 @@ xaml_result xaml_titled_group_internal::draw(xaml_rectangle const & region) noex
 {
     if (!m_handle) {
         XAML_RETURN_IF_FAILED(create<TitledGroup>(this));
+        XAML_RETURN_IF_FAILED(draw_visible());
         XAML_RETURN_IF_FAILED(draw_header());
         XAML_RETURN_IF_FAILED(draw_alignment());
     }
-    XAML_RETURN_IF_FAILED(draw_size());
+    XAML_RETURN_IF_FAILED(set_rect(region));
     XAML_RETURN_IF_FAILED(draw_child());
-    return set_rect(region);
+    return XAML_S_OK;
 }
 
 xaml_result xaml_titled_group_internal::draw_size() noexcept
@@ -69,9 +70,8 @@ xaml_result xaml_titled_group_internal::draw_alignment() noexcept
 xaml_result xaml_titled_group_internal::get_client_region(xaml_rectangle * region) noexcept
 {
     if (auto group = dynamic_cast<TitledGroup *>(m_handle)) {
-        group->layout()->update();
-        auto rect = QRectF(group->geometry());
-        *region = {rect.x(), rect.y(), rect.width(), rect.height()};
+        auto size = QSizeF(group->size());
+        *region = {0, 0, size.width(), size.height()};
     }
     return XAML_S_OK;
 }
