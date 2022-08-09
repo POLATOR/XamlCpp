@@ -8,6 +8,7 @@ using namespace std;
 
 class XComboBox : public TopHeader<QComboBox, QStyleOptionComboBox>
 {
+    Q_OBJECT
 public:
     using Base = TopHeader<QComboBox, QStyleOptionComboBox>;
     using Base::Base;
@@ -159,3 +160,5 @@ void xaml_combo_box_internal::on_current_text_changed(QString const & text) noex
         XAML_ASSERT_SUCCEEDED(set_text(nullptr));
     }
 }
+
+#include "combo_box.moc"

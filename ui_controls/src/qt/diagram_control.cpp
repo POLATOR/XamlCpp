@@ -2,12 +2,14 @@
 #include <xaml/ui/controls/diagram.h>
 
 #include <QPen>
+#include <QDebug>
 
 #include <QwtPlotCurve>
 #include <QwtPlotGrid>
 #include <QwtPlotPanner>
 #include <QwtPlotCanvas>
 #include <QwtPlotLegendItem>
+#include <QwtText>
 
 namespace {
 
@@ -86,12 +88,10 @@ private:
 DiagramControl::DiagramControl(QWidget * parent)
     : QwtPlot(parent)
 {
-    auto grid = new QwtPlotGrid;
-    grid->setPen(QColor("#8C8C8C"));
-    grid->attach(this);
+    m_grid = new QwtPlotGrid;
+    m_grid->attach(this);
 
     auto plotCanvas = new QwtPlotCanvas();
-    plotCanvas->setPalette(QColor(QColorConstants::Svg::white));
     plotCanvas->setFrameStyle(QFrame::Box | QFrame::Plain);
     plotCanvas->setLineWidth(1);
     setCanvas(plotCanvas);
@@ -99,18 +99,12 @@ DiagramControl::DiagramControl(QWidget * parent)
     auto panner = new QwtPlotPanner(plotCanvas);
     panner->setAxisEnabled(QwtAxis::XBottom, true);
 
-    auto legendItem = new QwtPlotLegendItem();
-    legendItem->setMaxColumns(1);
-    legendItem->setRenderHint(QwtPlotItem::RenderAntialiased);
-    legendItem->setBackgroundBrush(Qt::white);
-    legendItem->setBorderPen(QColor("#8C8C8C"));
-    legendItem->setTextPen(QColor("#8C8C8C"));
-    legendItem->setAlignmentInCanvas(Qt::AlignRight | Qt::AlignTop);
-    legendItem->setBorderRadius(4);
-    legendItem->setMargin(20);
-    legendItem->setSpacing(10);
-    legendItem->setItemMargin(0);
-    legendItem->attach(this);
+    m_legend = new QwtPlotLegendItem();
+    m_legend->setMaxColumns(1);
+    m_legend->setRenderHint(QwtPlotItem::RenderAntialiased);
+    m_legend->setAlignmentInCanvas(Qt::AlignRight | Qt::AlignTop);
+    m_legend->setItemMargin(0);
+    m_legend->attach(this);
 
     replot();
 }
@@ -200,6 +194,91 @@ void DiagramControl::setCurveTitle(const QString & curveTitleData)
     QMetaObject::invokeMethod(canvas(), "replot", Qt::DirectConnection);
 }
 
+QColor DiagramControl::gridColor() const
+{
+    return m_grid->majorPen().color();
+}
+
+void DiagramControl::setGridColor(const QColor & gridColor)
+{
+    m_grid->setPen(gridColor);
+}
+
+QColor DiagramControl::legendBackgroundColor() const
+{
+    return m_legend->backgroundBrush().color();
+}
+void DiagramControl::setLegendBackgroundColor(const QColor & legendBackgroundColor)
+{
+    m_legend->setBackgroundBrush(legendBackgroundColor);
+}
+
+QColor DiagramControl::legendBorderColor() const
+{
+    return m_legend->borderPen().color();
+}
+void DiagramControl::setLegendBorderColor(const QColor & legendBorderColor)
+{
+    m_legend->setBorderPen(legendBorderColor);
+}
+
+QColor DiagramControl::legendTextColor() const
+{
+    return m_legend->textPen().color();
+}
+void DiagramControl::setLegendTextColor(const QColor & legendTextColor)
+{
+    m_legend->setTextPen(legendTextColor);
+}
+
+int DiagramControl::legendMargin() const
+{
+    return m_legend->margin();
+}
+void DiagramControl::setLegendMargin(int legendMargin)
+{
+    m_legend->setMargin(legendMargin);
+}
+
+int DiagramControl::legendSpacing() const
+{
+    return m_legend->spacing();
+}
+void DiagramControl::setLegendSpacing(int legendSpacing)
+{
+    m_legend->setSpacing(legendSpacing);
+}
+
+double DiagramControl::legendBorderRadius() const
+{
+    return m_legend->borderRadius();
+}
+void DiagramControl::setLegendBorderRadius(double legendBorderRadius)
+{
+    m_legend->setBorderRadius(legendBorderRadius);
+}
+
+int DiagramControl::scaleTitleFontPixelSize() const
+{
+    return axisTitle(QwtAxis::YLeft).font().pointSize();
+}
+
+void DiagramControl::setScaleTitleFontPixelSize(int scaleTitleFontPixelSize)
+{
+    updateAxisTitleFontPixelSize(QwtAxis::XBottom, scaleTitleFontPixelSize);
+    updateAxisTitleFontPixelSize(QwtAxis::XTop, scaleTitleFontPixelSize);
+    updateAxisTitleFontPixelSize(QwtAxis::YLeft, scaleTitleFontPixelSize);
+    updateAxisTitleFontPixelSize(QwtAxis::YRight, scaleTitleFontPixelSize);
+}
+
+int DiagramControl::scaleTitleFontWeight() const
+{
+    return axisTitle(QwtAxis::YLeft).font().weight();
+}
+void DiagramControl::setScaleTitleFontWeight(int scaleTitleFontWeight)
+{
+}
+
 QwtPlotCurve * DiagramControl::detectCurve(const QStringList & data) const
 {
     if (data.isEmpty()) {
@@ -222,4 +301,22 @@ DiagramControl::DiagramData * DiagramControl::detectDiagramData(const QStringLis
         return nullptr;
     }
     return static_cast<DiagramData *>(curve->data());
+}
+
+void DiagramControl::updateAxisTitleFontPixelSize(QwtAxisId id, int fontSize)
+{
+    auto title = axisTitle(id);
+    auto font = title.font();
+    font.setPixelSize(fontSize);
+    title.setFont(font);
+    setAxisTitle(id, title);
+}
+
+void DiagramControl::updateAxisTitleFontWeight(QwtAxisId id, int fontWeight)
+{
+    auto title = axisTitle(id);
+    auto font = title.font();
+    font.setWeight(static_cast<QFont::Weight>(fontWeight));
+    title.setFont(font);
+    setAxisTitle(id, title);
 }

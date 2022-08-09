@@ -1,7 +1,7 @@
 #include <qt/titled_group_control.h>
 
 #include <QLabel>
-#include <QResizeEvent>
+#include <QVBoxLayout>
 
 #include <shared/titled_group.hpp>
 
@@ -12,6 +12,12 @@ TitledGroup::TitledGroup(xaml_titled_group_internal * internal, QWidget * parent
     m_header = new QLabel(this);
     m_header->setObjectName("TitledGroupHeader");
     m_header->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+    m_header->move(0, 0);
+
+    auto layout = new QVBoxLayout(this);
+    layout->addWidget(m_header);
+    layout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Minimum, QSizePolicy::Expanding));
+    layout->setContentsMargins({});
 }
 
 Qt::Alignment TitledGroup::headerAlignment() const
@@ -34,9 +40,6 @@ void TitledGroup::setHeaderText(const QString & headerText)
 
 void TitledGroup::resizeEvent(QResizeEvent * event)
 {
-    QWidget::resizeEvent(event);
+    QFrame::resizeEvent(event);
     m_internal->on_resize_event(event);
-    auto sz = m_header->size();
-    sz.setWidth(event->size().width());
-    m_header->resize(sz);
 }

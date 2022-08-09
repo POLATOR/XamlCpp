@@ -10,6 +10,7 @@ using namespace std;
 
 class XSpinBox : public TopHeader<QSpinBox, QStyleOptionSpinBox>
 {
+    Q_OBJECT
 public:
     using Base = TopHeader<QSpinBox, QStyleOptionSpinBox>;
     using Base::Base;
@@ -111,3 +112,5 @@ xaml_result xaml_spin_box_int_internal::draw_step() noexcept
     }
     return XAML_S_OK;
 }
+
+#include "spin_box_int.moc"

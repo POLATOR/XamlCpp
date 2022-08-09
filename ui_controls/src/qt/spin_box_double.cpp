@@ -11,6 +11,7 @@ using namespace std;
 
 class XDoubleSpinBox : public TopHeader<QDoubleSpinBox, QStyleOptionSpinBox>
 {
+    Q_OBJECT
 public:
     using Base = TopHeader<QDoubleSpinBox, QStyleOptionSpinBox>;
     using Base::Base;
@@ -156,3 +157,5 @@ xaml_result xaml_spin_box_double_internal::draw_decimals() noexcept
     }
     return XAML_S_OK;
 }
+
+#include "spin_box_double.moc"

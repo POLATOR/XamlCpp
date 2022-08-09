@@ -20,8 +20,8 @@ public:
     using BaseWidgetStyleOptionsType = BaseWidgetStyleOptions;
 
     template <typename... Args>
-    TopHeader(Args &&... args)
-        : BaseWidgetType(std::forward<Args>(args)...)
+    explicit TopHeader(Args &&... args, QWidget * parent = nullptr)
+        : BaseWidgetType(std::forward<Args>(args)..., parent)
     {
         this->makeHeaderFont();
     }
@@ -69,7 +69,18 @@ private:
     void makeHeaderFont()
     {
         m_headerFont = this->font();
-        m_headerFont.setPointSizeF(m_headerFont.pointSizeF() * c_headerToTextRatio);
+        m_headerFont.setWeight(QFont::Normal);
+        auto pointSize = m_headerFont.pointSizeF();
+        if (pointSize < 0) {
+            auto pixelSize = m_headerFont.pixelSize();
+            if (pixelSize < 0) {
+                return;
+            }
+            m_headerFont.setPixelSize(std::ceil(pixelSize * c_headerToTextRatio));
+        }
+        else {
+            m_headerFont.setPointSizeF(pointSize * c_headerToTextRatio);
+        }
     }
 
     QFont m_headerFont;

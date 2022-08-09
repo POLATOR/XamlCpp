@@ -9,6 +9,7 @@ using namespace std;
 
 class XLineEdit : public TopHeader<QLineEdit, QStyleOptionFrame>
 {
+    Q_OBJECT
 public:
     using Base = TopHeader<QLineEdit, QStyleOptionFrame>;
     using Base::Base;
@@ -74,3 +75,5 @@ void xaml_entry_internal::on_text_changed_event(QString const & text) noexcept
     XAML_ASSERT_SUCCEEDED(xaml_string_new(text, &str));
     XAML_ASSERT_SUCCEEDED(set_text(str));
 }
+
+#include "entry.moc"

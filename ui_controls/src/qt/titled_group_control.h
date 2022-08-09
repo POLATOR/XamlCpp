@@ -7,6 +7,7 @@ class QLabel;
 
 class TitledGroup : public QFrame
 {
+    Q_OBJECT
 public:
     explicit TitledGroup(xaml_titled_group_internal * internal, QWidget * parent = nullptr);
 
