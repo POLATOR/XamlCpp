@@ -46,6 +46,7 @@ endif()
 
 if(${XAML_INSTALL})
     install(TARGETS xaml_ui_controls)
+    install(FILES $<TARGET_PDB_FILE:xaml_ui_controls> DESTINATION bin)
     install(FILES ${UIC_HEADERS} DESTINATION include/xaml/ui/controls)
     install(FILES ${UIC_WINDOWS_HEADERS} DESTINATION include/xaml/ui/win/controls)
     install(FILES ${UIC_COCOA_HEADERS} DESTINATION include/xaml/ui/cocoa/controls)

@@ -20,5 +20,6 @@ endif()
 
 if(${XAML_INSTALL})
     install(TARGETS xaml_markup)
+    install(FILES $<TARGET_PDB_FILE:xaml_markup> DESTINATION bin)
     install(FILES ${XAML_MARKUP_HEADERS} DESTINATION include/xaml/markup)
 endif()

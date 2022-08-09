@@ -28,6 +28,7 @@ endif()
 
 if(${XAML_INSTALL})
     install(TARGETS xaml_meta)
+    install(FILES $<TARGET_PDB_FILE:xaml_meta> DESTINATION bin)
     install(FILES ${META_HEADERS} DESTINATION include/xaml/meta)
 endif()
 

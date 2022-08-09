@@ -21,6 +21,7 @@ endif()
 
 if(${XAML_INSTALL})
     install(TARGETS xaml_parser)
+    install(FILES $<TARGET_PDB_FILE:xaml_parser> DESTINATION bin)
     install(FILES ${XAML_HEADERS} DESTINATION include/xaml/parser)
 endif()
 

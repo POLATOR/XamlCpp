@@ -55,6 +55,7 @@ endif()
 
 if(${XAML_INSTALL})
     install(TARGETS xaml_global)
+    install(FILES $<TARGET_PDB_FILE:xaml_global> DESTINATION bin)
     install(FILES ${GLOBAL_HEADERS} DESTINATION include/xaml)
 endif()
 

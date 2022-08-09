@@ -48,6 +48,7 @@ endif()
 
 if(${XAML_INSTALL})
     install(TARGETS xaml_ui)
+    install(FILES $<TARGET_PDB_FILE:xaml_ui> DESTINATION bin)
     install(FILES ${UI_HEADERS} DESTINATION include/xaml/ui)
     install(FILES ${UI_WINDOWS_HEADERS} DESTINATION include/xaml/ui/win)
     install(FILES ${UI_COCOA_HEADERS} DESTINATION include/xaml/ui/cocoa)

@@ -118,7 +118,7 @@ endif()
 
 # Disable char8_t
 if(MSVC)
-    list(APPEND XAML_CXX_COMPILE_OPTIONS "/Zc:char8_t-")
+    list(APPEND XAML_CXX_COMPILE_OPTIONS "/Zc:char8_t-" "/Zi")
 else()
     list(APPEND XAML_CXX_COMPILE_OPTIONS "-fno-char8_t")
 endif()
