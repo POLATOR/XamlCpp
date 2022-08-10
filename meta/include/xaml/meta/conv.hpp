@@ -13,12 +13,10 @@ private:
     using return_type = std::decay_t<T>;
 
 public:
-    xaml_result operator()(xaml_ptr<xaml_object> const& obj, return_type* value) const noexcept
+    xaml_result operator()(xaml_ptr<xaml_object> const & obj, return_type * value) const noexcept
     {
-        if (obj)
-        {
-            if (auto box = obj.query<xaml_box<std::decay_t<T>>>())
-            {
+        if (obj) {
+            if (auto box = obj.query<xaml_box<std::decay_t<T>>>()) {
                 return box->get_value(value);
             }
         }
@@ -29,7 +27,7 @@ public:
 template <typename T>
 struct __xaml_converter<xaml_ptr<T>, std::enable_if_t<std::is_base_of_v<xaml_object, T>>>
 {
-    xaml_result operator()(xaml_ptr<xaml_object> const& obj, T** value) const noexcept
+    xaml_result operator()(xaml_ptr<xaml_object> const & obj, T ** value) const noexcept
     {
         return obj ? obj->query(value) : XAML_E_INVALIDARG;
     }
@@ -38,16 +36,13 @@ struct __xaml_converter<xaml_ptr<T>, std::enable_if_t<std::is_base_of_v<xaml_obj
 template <typename T, T (*func)(std::string_view) noexcept>
 struct __xaml_converter_helper
 {
-    xaml_result operator()(xaml_ptr<xaml_object> const& obj, T* value) const noexcept
+    xaml_result operator()(xaml_ptr<xaml_object> const & obj, T * value) const noexcept
     {
-        if (obj)
-        {
-            if (auto box = obj.query<xaml_box<T>>())
-            {
+        if (obj) {
+            if (auto box = obj.query<xaml_box<T>>()) {
                 return box->get_value(value);
             }
-            else if (auto str = obj.query<xaml_string>())
-            {
+            else if (auto str = obj.query<xaml_string>()) {
                 std::string_view view;
                 XAML_RETURN_IF_FAILED(to_string_view(str, &view));
                 *value = func(view);
@@ -106,10 +101,11 @@ struct __stoi_helper<bool>
     return_type operator()(std::string_view str) const noexcept
     {
         constexpr const char __true_str[] = "true";
-        if (str.length() != 4) return false;
-        for (std::size_t i = 0; i < 4; i++)
-        {
-            if (std::tolower(str[i]) != __true_str[i]) return false;
+        if (str.length() != 4)
+            return false;
+        for (std::size_t i = 0; i < 4; i++) {
+            if (std::tolower(str[i]) != __true_str[i])
+                return false;
         }
         return true;
     }
@@ -134,6 +130,9 @@ constexpr bool __can_stoi_v = std::is_integral_v<T>;
 template <typename TInt>
 inline TInt __stoi(std::string_view str) noexcept
 {
+    if (str.empty()) {
+        return TInt{};
+    }
     return __stoi_helper<TInt>{}(str);
 }
 
@@ -179,6 +178,9 @@ constexpr bool __can_stof_v = std::is_floating_point_v<T>;
 template <typename TFloat>
 inline TFloat __stof(std::string_view str) noexcept
 {
+    if (str.empty()) {
+        return TFloat{};
+    }
     return __stof_helper<TFloat>{}(str);
 }
 

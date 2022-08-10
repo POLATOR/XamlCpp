@@ -277,6 +277,10 @@ int DiagramControl::scaleTitleFontWeight() const
 }
 void DiagramControl::setScaleTitleFontWeight(int scaleTitleFontWeight)
 {
+    updateAxisTitleFontWeight(QwtAxis::XBottom, scaleTitleFontWeight);
+    updateAxisTitleFontWeight(QwtAxis::XTop, scaleTitleFontWeight);
+    updateAxisTitleFontWeight(QwtAxis::YLeft, scaleTitleFontWeight);
+    updateAxisTitleFontWeight(QwtAxis::YRight, scaleTitleFontWeight);
 }
 
 QwtPlotCurve * DiagramControl::detectCurve(const QStringList & data) const

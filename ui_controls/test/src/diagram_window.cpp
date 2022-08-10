@@ -182,7 +182,6 @@ xaml_result xaml_test_window_impl::init() noexcept
         XAML_RETURN_IF_FAILED((xaml_delegate_new(
             [diagram](xaml_object *, xaml_event_args *) noexcept -> xaml_result {
                 return ResetMinMax(diagram);
-                return XAML_S_OK;
             },
             &callback)));
         int32_t token;
