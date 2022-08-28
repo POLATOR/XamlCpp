@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.14)
-project(XamlCpp VERSION 1.3.301 LANGUAGES C CXX)
+project(XamlCpp VERSION "1.3.301" LANGUAGES C CXX)
 set(CMAKE_VISIBILITY_INLINES_HIDDEN ON)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED ON)
@@ -96,7 +96,8 @@ endif()
 
 # Enable visual style on Windows.
 if(MSVC)
-    list(APPEND XAML_LINK_OPTIONS "/manifestdependency:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='*' publicKeyToken='6595b64144ccf1df' language='*'")
+    list(APPEND XAML_LINK_OPTIONS "/manifestdependency:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='*' publicKeyToken='6595b64144ccf1df' language='*' ")
+    list(APPEND XAML_LINK_OPTIONS "/DEBUG")
 endif()
 
 # Disable RTTI by default.

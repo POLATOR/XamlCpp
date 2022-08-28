@@ -6,17 +6,14 @@
 
 using namespace std;
 
-xaml_result xaml_menu_item_internal::draw(xaml_rectangle const&) noexcept
+xaml_result xaml_menu_item_internal::draw(xaml_rectangle const &) noexcept
 {
-    if (!m_handle)
-    {
+    if (!m_handle) {
         xaml_ptr<xaml_element_base> parent;
         XAML_RETURN_IF_FAILED(get_parent(&parent));
-        if (parent)
-        {
+        if (parent) {
             xaml_ptr<xaml_qt5_control> native_parnet;
-            if (XAML_SUCCEEDED(parent->query(&native_parnet)))
-            {
+            if (XAML_SUCCEEDED(parent->query(&native_parnet))) {
                 XAML_RETURN_IF_FAILED(native_parnet->get_handle(&m_handle));
             }
         }
@@ -25,42 +22,35 @@ xaml_result xaml_menu_item_internal::draw(xaml_rectangle const&) noexcept
     return XAML_S_OK;
 }
 
-xaml_result xaml_menu_item_internal::draw_append(QAction** ptr) noexcept
+xaml_result xaml_menu_item_internal::draw_append(QAction ** ptr) noexcept
 {
-    QMenu* pmenu = nullptr;
-    QMenuBar* pbar = nullptr;
+    QMenu * pmenu = nullptr;
+    QMenuBar * pbar = nullptr;
     xaml_ptr<xaml_element_base> parent;
     XAML_RETURN_IF_FAILED(get_parent(&parent));
-    if (parent)
-    {
+    if (parent) {
         xaml_ptr<xaml_qt5_menu_bar> native_menu_bar;
-        if (XAML_SUCCEEDED(parent->query(&native_menu_bar)))
-        {
+        if (XAML_SUCCEEDED(parent->query(&native_menu_bar))) {
             XAML_RETURN_IF_FAILED(native_menu_bar->get_handle(&pbar));
         }
-        else
-        {
+        else {
             xaml_ptr<xaml_qt5_control> native_menu_item;
-            if (XAML_SUCCEEDED(parent->query(&native_menu_item)))
-            {
-                QWidget* handle;
+            if (XAML_SUCCEEDED(parent->query(&native_menu_item))) {
+                QPointer<QWidget> handle;
                 XAML_RETURN_IF_FAILED(native_menu_item->get_handle(&handle));
-                pmenu = qobject_cast<QMenu*>(handle);
+                pmenu = qobject_cast<QMenu *>(handle);
             }
         }
     }
 
-    if (pmenu || pbar)
-    {
-        if (auto menu = qobject_cast<QMenu*>(m_handle); menu && menu != pmenu)
-        {
+    if (pmenu || pbar) {
+        if (auto menu = qobject_cast<QMenu *>(m_handle); menu && menu != pmenu) {
             if (pmenu)
                 *ptr = pmenu->addMenu(menu);
             else
                 *ptr = pbar->addMenu(menu);
         }
-        else
-        {
+        else {
             QString text;
             XAML_RETURN_IF_FAILED(to_QString(m_text, &text));
             if (pmenu)
@@ -79,12 +69,11 @@ void xaml_menu_item_internal::on_triggerd() noexcept
     XAML_ASSERT_SUCCEEDED(m_click->invoke(m_outer_this, args));
 }
 
-xaml_result xaml_popup_menu_item_internal::draw(xaml_rectangle const& region) noexcept
+xaml_result xaml_popup_menu_item_internal::draw(xaml_rectangle const & region) noexcept
 {
-    if (!m_handle)
-    {
+    if (!m_handle) {
         auto menu = new QMenu();
-        m_handle = static_cast<QWidget*>(menu);
+        m_handle = static_cast<QWidget *>(menu);
         QString text;
         XAML_RETURN_IF_FAILED(to_QString(m_text, &text));
         menu->setTitle(text);
@@ -105,10 +94,9 @@ xaml_result xaml_popup_menu_item_internal::draw_submenu() noexcept
     return XAML_S_OK;
 }
 
-xaml_result xaml_check_menu_item_internal::draw(xaml_rectangle const& region) noexcept
+xaml_result xaml_check_menu_item_internal::draw(xaml_rectangle const & region) noexcept
 {
-    if (!m_handle)
-    {
+    if (!m_handle) {
         XAML_RETURN_IF_FAILED(xaml_menu_item_internal::draw(region));
         m_action->setCheckable(true);
         XAML_RETURN_IF_FAILED(draw_checked());
@@ -122,10 +110,9 @@ xaml_result xaml_check_menu_item_internal::draw_checked() noexcept
     return XAML_S_OK;
 }
 
-xaml_result xaml_radio_menu_item_internal::draw(xaml_rectangle const& region) noexcept
+xaml_result xaml_radio_menu_item_internal::draw(xaml_rectangle const & region) noexcept
 {
-    if (!m_handle)
-    {
+    if (!m_handle) {
         XAML_RETURN_IF_FAILED(xaml_menu_item_internal::draw(region));
         m_action->setCheckable(true);
         XAML_RETURN_IF_FAILED(draw_checked());
@@ -140,10 +127,9 @@ xaml_result xaml_radio_menu_item_internal::draw_checked() noexcept
     return XAML_S_OK;
 }
 
-xaml_result xaml_separator_menu_item_internal::draw(xaml_rectangle const& region) noexcept
+xaml_result xaml_separator_menu_item_internal::draw(xaml_rectangle const & region) noexcept
 {
-    if (!m_handle)
-    {
+    if (!m_handle) {
         XAML_RETURN_IF_FAILED(xaml_menu_item_internal::draw(region));
         m_action->setSeparator(true);
     }

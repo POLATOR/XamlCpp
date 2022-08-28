@@ -3,6 +3,8 @@
 #include <QMetaObject>
 #include <shared/application.hpp>
 
+static bool standalone_mode = false;
+
 xaml_result xaml_application_impl::init(int argc, char ** argv) noexcept
 {
     XAML_RETURN_IF_FAILED(xaml_event_new(&m_activate));
@@ -15,6 +17,7 @@ xaml_result xaml_application_impl::init(int argc, char ** argv) noexcept
 #endif
     if (qApp == nullptr) {
         static auto * app = new QApplication(argc, argv);
+        standalone_mode = true;
     }
     m_native_app = qApp;
 
@@ -51,7 +54,9 @@ xaml_result xaml_application_impl::run(int * pvalue) noexcept
 xaml_result xaml_application_impl::quit(int value) noexcept
 {
     m_quit_value = value;
-    m_native_app->quit();
+    if (standalone_mode) {
+        m_native_app->quit();
+    }
     return XAML_S_OK;
 }
 

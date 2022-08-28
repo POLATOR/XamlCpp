@@ -47,7 +47,7 @@ xaml_result xaml_spin_box_double_internal::draw(xaml_rectangle const & region) n
 {
     if (!m_handle) {
         XAML_RETURN_IF_FAILED(create<XDoubleSpinBox>());
-        auto edit = static_cast<QDoubleSpinBox *>(m_handle);
+        auto edit = qobject_cast<QDoubleSpinBox *>(m_handle.data());
         XAML_RETURN_IF_FAILED(draw_visible());
         XAML_RETURN_IF_FAILED(draw_decimals());
         XAML_RETURN_IF_FAILED(draw_min());
@@ -80,7 +80,7 @@ xaml_result xaml_spin_box_double_internal::draw_value() noexcept
 
 xaml_result xaml_spin_box_double_internal::draw_top_header() noexcept
 {
-    if (auto edit = dynamic_cast<XDoubleSpinBox *>(m_handle)) {
+    if (auto edit = qobject_cast<XDoubleSpinBox *>(m_handle)) {
         QString text;
         XAML_RETURN_IF_FAILED(to_QString(m_top_header, &text));
         edit->setHeader(text);
@@ -90,7 +90,7 @@ xaml_result xaml_spin_box_double_internal::draw_top_header() noexcept
 
 xaml_result xaml_spin_box_double_internal::draw_min() noexcept
 {
-    if (auto edit = dynamic_cast<XDoubleSpinBox *>(m_handle)) {
+    if (auto edit = qobject_cast<XDoubleSpinBox *>(m_handle)) {
         QString text;
         XAML_RETURN_IF_FAILED(to_QString(m_min, &text));
         bool ok = false;
@@ -108,7 +108,7 @@ xaml_result xaml_spin_box_double_internal::draw_min() noexcept
 
 xaml_result xaml_spin_box_double_internal::draw_max() noexcept
 {
-    if (auto edit = dynamic_cast<XDoubleSpinBox *>(m_handle)) {
+    if (auto edit = qobject_cast<XDoubleSpinBox *>(m_handle)) {
         QString text;
         XAML_RETURN_IF_FAILED(to_QString(m_max, &text));
         bool ok = false;
@@ -126,7 +126,7 @@ xaml_result xaml_spin_box_double_internal::draw_max() noexcept
 
 xaml_result xaml_spin_box_double_internal::draw_step() noexcept
 {
-    if (auto edit = dynamic_cast<XDoubleSpinBox *>(m_handle)) {
+    if (auto edit = qobject_cast<XDoubleSpinBox *>(m_handle)) {
         QString text;
         XAML_RETURN_IF_FAILED(to_QString(m_step, &text));
         bool ok = false;
@@ -143,7 +143,7 @@ xaml_result xaml_spin_box_double_internal::draw_step() noexcept
 
 xaml_result xaml_spin_box_double_internal::draw_decimals() noexcept
 {
-    if (auto edit = dynamic_cast<XDoubleSpinBox *>(m_handle)) {
+    if (auto edit = qobject_cast<XDoubleSpinBox *>(m_handle)) {
         QString text;
         XAML_RETURN_IF_FAILED(to_QString(m_decimals, &text));
         bool ok = false;

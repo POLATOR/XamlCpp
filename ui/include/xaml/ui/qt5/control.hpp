@@ -2,14 +2,15 @@
 #define XAML_UI_QT_CONTROL_H
 
 #include <QWidget>
+#include <QPointer>
 #include <memory>
 #include <xaml/meta/meta_macros.h>
 
-XAML_CLASS(xaml_qt5_control, { 0x0cafa395, 0x4050, 0x4b84, { 0x8f, 0xeb, 0x02, 0xaa, 0xa1, 0x27, 0x21, 0x7b } })
+XAML_CLASS(xaml_qt5_control, {0x0cafa395, 0x4050, 0x4b84, {0x8f, 0xeb, 0x02, 0xaa, 0xa1, 0x27, 0x21, 0x7b}})
 
-#define XAML_QT5_CONTROL_VTBL(type)            \
-    XAML_VTBL_INHERIT(XAML_OBJECT_VTBL(type)); \
-    XAML_PROP(handle, type, QWidget**, QWidget*)
+#define XAML_QT5_CONTROL_VTBL(type)                                                                                                                            \
+    XAML_VTBL_INHERIT(XAML_OBJECT_VTBL(type));                                                                                                                 \
+    XAML_PROP(handle, type, QPointer<QWidget> *, QPointer<QWidget>)
 
 XAML_DECL_INTERFACE_(xaml_qt5_control, xaml_object)
 {

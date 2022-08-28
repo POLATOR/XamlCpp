@@ -18,7 +18,7 @@ xaml_result xaml_combo_box_internal::draw(xaml_rectangle const & region) noexcep
 {
     if (!m_handle) {
         XAML_RETURN_IF_FAILED(create<XComboBox>());
-        auto combo = static_cast<QComboBox *>(m_handle);
+        auto combo = static_cast<QComboBox *>(m_handle.data());
         XAML_RETURN_IF_FAILED(draw_items());
         XAML_RETURN_IF_FAILED(draw_sel());
         XAML_RETURN_IF_FAILED(draw_editable());
@@ -94,7 +94,7 @@ xaml_result xaml_combo_box_internal::draw_editable() noexcept
 
 xaml_result xaml_combo_box_internal::draw_top_header() noexcept
 {
-    if (auto edit = dynamic_cast<XComboBox *>(m_handle)) {
+    if (auto edit = qobject_cast<XComboBox *>(m_handle)) {
         QString text;
         XAML_RETURN_IF_FAILED(to_QString(m_top_header, &text));
         edit->setHeader(text);

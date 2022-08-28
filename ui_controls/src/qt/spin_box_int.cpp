@@ -20,7 +20,7 @@ xaml_result xaml_spin_box_int_internal::draw(xaml_rectangle const & region) noex
 {
     if (!m_handle) {
         XAML_RETURN_IF_FAILED(create<XSpinBox>());
-        auto edit = static_cast<QSpinBox *>(m_handle);
+        auto edit = static_cast<QSpinBox *>(m_handle.data());
         XAML_RETURN_IF_FAILED(draw_visible());
         XAML_RETURN_IF_FAILED(draw_min());
         XAML_RETURN_IF_FAILED(draw_max());
@@ -52,7 +52,7 @@ xaml_result xaml_spin_box_int_internal::draw_value() noexcept
 
 xaml_result xaml_spin_box_int_internal::draw_top_header() noexcept
 {
-    if (auto edit = dynamic_cast<XSpinBox *>(m_handle)) {
+    if (auto edit = dynamic_cast<XSpinBox *>(m_handle.data())) {
         QString text;
         XAML_RETURN_IF_FAILED(to_QString(m_top_header, &text));
         edit->setHeader(text);
@@ -62,7 +62,7 @@ xaml_result xaml_spin_box_int_internal::draw_top_header() noexcept
 
 xaml_result xaml_spin_box_int_internal::draw_min() noexcept
 {
-    if (auto edit = dynamic_cast<XSpinBox *>(m_handle)) {
+    if (auto edit = dynamic_cast<XSpinBox *>(m_handle.data())) {
         QString text;
         XAML_RETURN_IF_FAILED(to_QString(m_min, &text));
         bool ok = false;
@@ -80,7 +80,7 @@ xaml_result xaml_spin_box_int_internal::draw_min() noexcept
 
 xaml_result xaml_spin_box_int_internal::draw_max() noexcept
 {
-    if (auto edit = dynamic_cast<XSpinBox *>(m_handle)) {
+    if (auto edit = dynamic_cast<XSpinBox *>(m_handle.data())) {
         QString text;
         XAML_RETURN_IF_FAILED(to_QString(m_max, &text));
         bool ok = false;
@@ -98,7 +98,7 @@ xaml_result xaml_spin_box_int_internal::draw_max() noexcept
 
 xaml_result xaml_spin_box_int_internal::draw_step() noexcept
 {
-    if (auto edit = dynamic_cast<XSpinBox *>(m_handle)) {
+    if (auto edit = qobject_cast<XSpinBox *>(m_handle)) {
         QString text;
         XAML_RETURN_IF_FAILED(to_QString(m_step, &text));
         bool ok = false;

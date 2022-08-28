@@ -115,7 +115,7 @@ xaml_result xaml_diagram_internal::setCurveTitle() noexcept
 
 xaml_result XAML_CALL xaml_diagram_internal::addCurveData() noexcept
 {
-    if (auto plot = dynamic_cast<DiagramControl *>(m_handle)) {
+    if (auto plot = qobject_cast<DiagramControl *>(m_handle)) {
         QString curve_dataData;
         XAML_RETURN_IF_FAILED(to_QString(m_curve_data, &curve_dataData));
         plot->addSeries(curve_dataData);

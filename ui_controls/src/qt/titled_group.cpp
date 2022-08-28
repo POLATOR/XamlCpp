@@ -39,7 +39,7 @@ xaml_result xaml_titled_group_internal::draw_child() noexcept
 
 xaml_result xaml_titled_group_internal::draw_header() noexcept
 {
-    if (auto group = dynamic_cast<TitledGroup *>(m_handle)) {
+    if (auto group = qobject_cast<TitledGroup *>(m_handle)) {
         QString text;
         XAML_RETURN_IF_FAILED(to_QString(m_header, &text));
         group->setHeaderText(text);
@@ -49,7 +49,7 @@ xaml_result xaml_titled_group_internal::draw_header() noexcept
 
 xaml_result xaml_titled_group_internal::draw_alignment() noexcept
 {
-    if (auto group = dynamic_cast<TitledGroup *>(m_handle)) {
+    if (auto group = qobject_cast<TitledGroup *>(m_handle)) {
         Qt::Alignment align;
         switch (m_header_halignment) {
         case xaml_halignment_center:
@@ -69,7 +69,7 @@ xaml_result xaml_titled_group_internal::draw_alignment() noexcept
 
 xaml_result xaml_titled_group_internal::get_client_region(xaml_rectangle * region) noexcept
 {
-    if (auto group = dynamic_cast<TitledGroup *>(m_handle)) {
+    if (auto group = qobject_cast<TitledGroup *>(m_handle)) {
         auto size = QSizeF(group->size());
         *region = {0, 0, size.width(), size.height()};
     }

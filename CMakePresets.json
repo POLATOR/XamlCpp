@@ -1,0 +1,64 @@
+﻿{
+  "version": 2,
+  "configurePresets": [
+    {
+      "name": "linux-default",
+      "displayName": "Linux Debug",
+      "description": "Сделать целевой подсистему Windows для Linux (WSL) или удаленную систему Linux.",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/out/build/${presetName}",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/install/${presetName}"
+      },
+      "vendor": {
+        "microsoft.com/VisualStudioSettings/CMake/1.0": { "hostOS": [ "Linux" ] },
+        "microsoft.com/VisualStudioRemoteSettings/CMake/1.0": { "sourceDir": "$env{HOME}/.vs/$ms{projectDirName}" }
+      }
+    },
+    {
+      "name": "windows-debug",
+      "displayName": "Windows x64 Debug",
+      "description": "Сделать целевой ОС Windows со средой разработки Visual Studio.",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/output/build/${presetName}",
+      "cmakeExecutable": "C:\\Program Files\\CMake\\bin\\cmake.exe",
+      "architecture": {
+        "value": "x64",
+        "strategy": "external"
+      },
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_INSTALL_PREFIX": "C:\\polator-libs\\Debug",
+        "EXPORT_COMPILE_COMMANDS": "ON",
+        "CMAKE_PREFIX_PATH": "C:\\polator-libs\\Debug",
+        "BUILD_QT6": "ON",
+        "XAML_NO_RTTI": "OFF"
+      },
+      "vendor": { "microsoft.com/VisualStudioSettings/CMake/1.0": { "hostOS": [ "Windows" ] } }
+    },
+    {
+      "name": "windows-release",
+      "displayName": "Windows x64 Debug",
+      "description": "Сделать целевой ОС Windows со средой разработки Visual Studio.",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/output/build/${presetName}",
+      "cmakeExecutable": "C:\\Program Files\\CMake\\bin\\cmake.exe",
+      "architecture": {
+        "value": "x64",
+        "strategy": "external"
+      },
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_INSTALL_PREFIX": "C:\\polator-libs\\Release",
+        "EXPORT_COMPILE_COMMANDS": "ON",
+        "CMAKE_PREFIX_PATH": "C:\\polator-libs\\Release",
+        "CXXFLAGS": "/Zi",
+        "BUILD_QT6": "ON",
+        "XAML_NO_RTTI": "OFF",
+        "XAML_INSTALL": "ON"
+      },
+      "vendor": { "microsoft.com/VisualStudioSettings/CMake/1.0": { "hostOS": [ "Windows" ] } }
+    }
+  ]
+}

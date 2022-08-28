@@ -3,20 +3,13 @@
 
 using namespace std;
 
-xaml_result xaml_radio_box_internal::draw(xaml_rectangle const& region) noexcept
+xaml_result xaml_radio_box_internal::draw(xaml_rectangle const & region) noexcept
 {
-    if (!m_handle)
-    {
+    if (!m_handle) {
         XAML_RETURN_IF_FAILED(create<QRadioButton>());
-        auto button = static_cast<QRadioButton*>(m_handle);
-        QObject::connect(
-            button, &QAbstractButton::clicked,
-            xaml_mem_fn(
-                &xaml_button_internal::on_clicked,
-                static_cast<xaml_button_internal*>(this)));
-        QObject::connect(
-            button, &QRadioButton::toggled,
-            xaml_mem_fn(&xaml_radio_box_internal::on_toggled, this));
+        auto button = static_cast<QRadioButton *>(m_handle.data());
+        QObject::connect(button, &QAbstractButton::clicked, xaml_mem_fn(&xaml_button_internal::on_clicked, static_cast<xaml_button_internal *>(this)));
+        QObject::connect(button, &QRadioButton::toggled, xaml_mem_fn(&xaml_radio_box_internal::on_toggled, this));
         button->setAutoExclusive(false);
         XAML_RETURN_IF_FAILED(draw_visible());
         XAML_RETURN_IF_FAILED(draw_text());
@@ -29,8 +22,7 @@ xaml_result xaml_radio_box_internal::draw(xaml_rectangle const& region) noexcept
 
 xaml_result xaml_radio_box_internal::draw_checked() noexcept
 {
-    if (auto button = qobject_cast<QRadioButton*>(m_handle))
-    {
+    if (auto button = qobject_cast<QRadioButton *>(m_handle)) {
         button->setChecked(m_is_checked);
     }
     return XAML_S_OK;

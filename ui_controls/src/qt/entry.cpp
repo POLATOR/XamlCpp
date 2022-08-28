@@ -19,7 +19,7 @@ xaml_result xaml_entry_internal::draw(xaml_rectangle const & region) noexcept
 {
     if (!m_handle) {
         XAML_RETURN_IF_FAILED(create<XLineEdit>());
-        auto edit = static_cast<QLineEdit *>(m_handle);
+        auto edit = static_cast<QLineEdit *>(m_handle.data());
         QObject::connect(edit, &QLineEdit::textEdited, xaml_mem_fn(&xaml_entry_internal::on_text_changed_event, this));
         XAML_RETURN_IF_FAILED(draw_visible());
         XAML_RETURN_IF_FAILED(draw_text());
@@ -41,7 +41,7 @@ xaml_result xaml_entry_internal::draw_text() noexcept
 
 xaml_result xaml_entry_internal::draw_top_header() noexcept
 {
-    if (auto edit = dynamic_cast<XLineEdit *>(m_handle)) {
+    if (auto edit = qobject_cast<XLineEdit *>(m_handle)) {
         QString text;
         XAML_RETURN_IF_FAILED(to_QString(m_top_header, &text));
         edit->setHeader(text);

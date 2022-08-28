@@ -3,12 +3,11 @@
 
 using namespace std;
 
-xaml_result xaml_progress_internal::draw(xaml_rectangle const& region) noexcept
+xaml_result xaml_progress_internal::draw(xaml_rectangle const & region) noexcept
 {
-    if (!m_handle)
-    {
+    if (!m_handle) {
         XAML_RETURN_IF_FAILED(create<QProgressBar>());
-        auto progress = static_cast<QProgressBar*>(m_handle);
+        auto progress = static_cast<QProgressBar *>(m_handle.data());
         progress->setTextVisible(false);
         XAML_RETURN_IF_FAILED(draw_visible());
         XAML_RETURN_IF_FAILED(draw_indeterminate());
@@ -18,14 +17,11 @@ xaml_result xaml_progress_internal::draw(xaml_rectangle const& region) noexcept
 
 xaml_result xaml_progress_internal::draw_progress() noexcept
 {
-    if (auto progress = qobject_cast<QProgressBar*>(m_handle))
-    {
-        if (m_is_indeterminate)
-        {
+    if (auto progress = qobject_cast<QProgressBar *>(m_handle)) {
+        if (m_is_indeterminate) {
             progress->setRange(0, 0);
         }
-        else
-        {
+        else {
             progress->setRange(m_minimum, m_maximum);
             progress->setValue(m_value);
         }

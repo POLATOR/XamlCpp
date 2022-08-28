@@ -62,15 +62,19 @@ xaml_result xaml_window_internal::draw(xaml_rectangle const &) noexcept
 
 xaml_result xaml_window_internal::draw_size() noexcept
 {
-    m_handle->setFixedSize(xaml_to_native<QSize>(m_size));
+    if (m_handle) {
+        m_handle->setFixedSize(xaml_to_native<QSize>(m_size));
+    }
     return XAML_S_OK;
 }
 
 xaml_result xaml_window_internal::draw_title() noexcept
 {
-    QString title;
-    XAML_RETURN_IF_FAILED(to_QString(m_title, &title));
-    m_handle->setWindowTitle(title);
+    if (m_handle) {
+        QString title;
+        XAML_RETURN_IF_FAILED(to_QString(m_title, &title));
+        m_handle->setWindowTitle(title);
+    }
     return XAML_S_OK;
 }
 
@@ -86,14 +90,16 @@ xaml_result xaml_window_internal::draw_child() noexcept
 
 xaml_result xaml_window_internal::draw_resizable() noexcept
 {
-    auto flags = m_handle->windowFlags();
-    if (m_is_resizable) {
-        flags |= Qt::WindowMaximizeButtonHint;
+    if (m_handle) {
+        auto flags = m_handle->windowFlags();
+        if (m_is_resizable) {
+            flags |= Qt::WindowMaximizeButtonHint;
+        }
+        else {
+            flags &= ~Qt::WindowMaximizeButtonHint;
+        }
+        m_handle->setWindowFlags(flags);
     }
-    else {
-        flags &= ~Qt::WindowMaximizeButtonHint;
-    }
-    m_handle->setWindowFlags(flags);
     return XAML_S_OK;
 }
 
@@ -109,19 +115,25 @@ xaml_result xaml_window_internal::draw_menu_bar() noexcept
 xaml_result xaml_window_internal::show() noexcept
 {
     XAML_RETURN_IF_FAILED(draw({}));
-    m_handle->show();
+    if (m_handle) {
+        m_handle->show();
+    }
     return XAML_S_OK;
 }
 
 xaml_result xaml_window_internal::close() noexcept
 {
-    m_handle->close();
+    if (m_handle) {
+        m_handle->close();
+    }
     return XAML_S_OK;
 }
 
 xaml_result xaml_window_internal::hide() noexcept
 {
-    m_handle->hide();
+    if (m_handle) {
+        m_handle->hide();
+    }
     return XAML_S_OK;
 }
 
